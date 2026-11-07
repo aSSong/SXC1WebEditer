@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><meta name="description" content="SXC-1 非官方网页采样管理器：浏览、下载、上传、复制采样与编辑 Pad 设置，通过 USB 直接连接，本机处理音频。"><title>SXC-1 · 采样管理器</title>
+<style>/*STYLE*/</style></head>
+<body>
+<header class="topbar"><div class="brand"><span class="logo" aria-hidden="true">▥</span><strong>SXC—1</strong><span class="brand-sub">SAMPLE LIBRARY</span></div><div class="top-actions"><span id="connection" class="connection">● 未连接</span><button id="connect" class="primary">连接 SXC-1</button><button id="disconnect" hidden>断开</button></div></header>
+<div class="layout">
+<aside><div class="sidebar-head"><span>采样库</span><span id="bankCount" class="muted">80 BANKS</span></div><div class="source-tag" id="sourceTag">等待连接设备</div><nav id="banks" aria-label="选择 Bank"></nav><div class="local-panel"><span class="eyebrow">LOCAL ARCHIVE</span><button id="saved" hidden>查看已保存备份 ↗</button><button id="folder">打开备份文件夹</button><input id="folderInput" type="file" webkitdirectory multiple hidden><p>离线浏览已保存的采样。<br>所有文件都留在这台电脑。</p></div></aside>
+<main>
+<div class="heading"><div><span class="eyebrow">YOUR SOUND, ORGANIZED.</span><h1 id="bankTitle">Bank <em>01</em></h1><p id="bankSubtitle">每一页对应 16 个 Pad</p></div><div class="bank-actions"><button id="uploadOpen" disabled>↑ 上传采样</button><button id="refresh" disabled>↻ 刷新本页</button><button id="downloadBank" class="primary" disabled>↓ 下载整页 ZIP</button></div></div>
+<div class="page-bar"><div><span id="sampleCount">尚未读取</span><span class="divider">/</span><span id="bankSize">—</span></div><div class="pager"><button id="prev" aria-label="上一页" disabled>←</button><span id="pageNumber">01 / 80</span><button id="next" aria-label="下一页">→</button></div></div>
+<div id="welcome" class="welcome"><div class="welcome-icon" aria-hidden="true">⌁</div><div><h2>把机器里的声音，带到电脑上。</h2><p>连接 SXC-1，按 Bank 浏览、下载或上传采样。<br>也可以打开备份，在离线时整理、试听和下载。</p><span>电脑 Chrome / Edge · DATA 接口连接 · 允许 MIDI</span></div></div>
+<div id="progressPanel" class="progress-panel" hidden><div><span id="progressText" role="status" aria-live="polite">准备读取…</span><button id="cancel">取消</button></div><progress id="progress" value="0" max="100" aria-label="传输进度"></progress></div>
+<p id="notice" role="status" aria-live="polite" hidden></p>
+<div id="uploadReceipt" class="receipt" hidden><span id="receiptText"></span><button id="receiptDownload">下载上传记录</button></div>
+<div id="clipboardBar" class="clipboard-bar" hidden><div><span class="eyebrow">PAD CLIPBOARD</span><strong id="clipboardTitle"></strong><span id="clipboardDetail"></span></div><button id="clearClipboard">清空复制</button></div>
+<div id="editReceipt" class="receipt" hidden><span id="editReceiptText"></span><button id="editReceiptDownload">下载编辑记录</button></div>
+<div class="pad-board"><section id="pads" class="pads" aria-label="采样列表，Pad 1 在左下"></section></div>
+<footer><span><i class="dot"></i> 采样管理器 <small>v0.4.1</small></span><span>完整复制 · Pad 编辑 · 本机处理</span></footer>
+<details class="help"><summary>使用说明与连接帮助</summary><div><p>使用机器的 DATA 接口连接电脑，在 Chrome 或 Edge 中打开本页，点击“连接 SXC-1”，允许 MIDI / SysEx 访问。连接期间请退出官方 App 或其他读取 SXC-1 的程序。</p><p>每页对应一个 Bank，连接时打开机器当前 Bank，网页翻页时机器同步切换。将一个 WAV 拖到空 Pad 会直接检查、转换并上传；已有采样的 Pad 不接受拖入。点击“试听”会先读取该采样，再由电脑播放；WAV 下载保留机器上的原始文件。整页 ZIP 包含该 Bank 的全部文件、Pad 设置和校验清单。空 Pad 不会生成占位音频。</p><p>选择“打开备份文件夹”时，请选择包含 manifest.json 和 Bank01 等目录的备份根目录，或解压后的整页 ZIP 文件夹。选择的文件只在本页读取。</p><p>读取失败或取消后，重新连接设备即可继续。下载期间不要更改机器上的采样。网页单个文件上限 256 MB，整页上限 512 MB。上传支持 60 秒以内的单/双声道 WAV（PCM 8/16/24/32-bit、Float 32-bit），在本机转换为 48 kHz / 16-bit 双声道。只开放空 Pad；以单次播放、音量 100% 加载，不保留源文件的循环点等设置。上传期间请勿操作机器或同时连接官方 App。</p><p>有采样的 Pad 可点击“复制”，再到同一或其他 Bank 的空 Pad 点击“粘贴”。复制原始 WAV、波形、起止点、Pad 设置及同名前缀的附属文件，不重新编码；不包含 Pattern。每个复制文件最大 64 MB。“Edit 编辑”支持 Level、Pitch、Group、LED 颜色、Pan、One Shot、Loop、BPM；保存后核对实时参数和机器保存文件。编辑记录保留修改前后的设置。</p><p>在线版直接通过 HTTPS 地址使用；本地版可通过 localhost 服务或附带的启动器打开。网页试听播放原始 WAV，不模拟机器的播放参数。音频在本机处理，不上传到网站服务器；浏览器本地保留最近一次上传和编辑记录。离开页面会清空临时缓存和复制剪贴板，已下载的文件仍在电脑上。</p><p>非官方工具，与 CASIO 无隶属关系。已在 macOS / Chrome / 固件 1.4.1 上完成实机验证。</p></div></details>
+</main></div>
+<audio id="player" hidden></audio>
+<dialog id="uploadDialog" aria-labelledby="uploadTitle">
+<div class="dialog-head"><div><span class="eyebrow">FROM YOUR COMPUTER</span><h2 id="uploadTitle">上传采样</h2></div><button id="uploadClose" aria-label="关闭上传窗口">✕</button></div>
+<p class="dialog-intro">选择电脑里的 WAV，试听后放入一个空 Pad。</p>
+<label class="field-label" for="uploadTarget">目标 Pad</label><select id="uploadTarget"></select>
+<label class="file-picker" for="uploadInput"><strong>选择 WAV 文件</strong><span>最长 60 秒 · 最大 64 MB · 单声道或双声道</span><input id="uploadInput" type="file" accept=".wav,audio/wav,audio/x-wav"></label>
+<div id="uploadPreview" hidden><h3 id="uploadFilename"></h3><p id="uploadFormat"></p><canvas id="uploadWave" aria-label="待上传采样波形"></canvas><audio id="uploadAudio" controls preload="metadata"></audio><p class="conversion">上传格式：48 kHz / 16-bit · 双声道<br>播放设置：单次播放 · 音量 100%<br>包含机器屏幕所需的波形预览</p></div>
+<p id="uploadMessage" role="status" aria-live="polite">文件只在这台电脑处理。</p>
+<div class="dialog-actions"><button id="uploadConverted" disabled>下载转换后的 WAV</button><button id="uploadSubmit" class="primary" disabled>上传到空 Pad</button></div>
+</dialog>
+<dialog id="editDialog" aria-labelledby="editTitle">
+<form id="editForm">
+<div class="dialog-head"><div><span class="eyebrow">SOUND EDIT</span><h2 id="editTitle">编辑 Pad</h2></div><button type="button" id="editClose" aria-label="关闭编辑窗口">✕</button></div>
+<p class="dialog-intro" id="editDescription">调整播放方式与 Pad 设置，点击保存后写入机器。</p>
+<div class="edit-grid">
+<div class="edit-field"><label for="editLevel">Level <span>音量 · %</span></label><div class="range-pair"><input id="editLevelRange" type="range" min="0" max="100" step="1" aria-label="Level 音量滑块"><input id="editLevel" type="number" min="0" max="100" step="1" required></div></div>
+<div class="edit-field"><label for="editPitch">Pitch <span>音高 · 半音</span></label><div class="range-pair"><input id="editPitchRange" type="range" min="-24" max="24" step="1" aria-label="Pitch 音高滑块"><input id="editPitch" type="number" min="-24" max="24" step="1" required></div></div>
+<div class="edit-field"><label for="editGroup">Group <span>截音组</span></label><select id="editGroup"></select></div>
+<div class="edit-field"><label for="editPan">Pan <span>声像 · 左 − / 右 +</span></label><div class="range-pair"><input id="editPanRange" type="range" min="-25" max="25" step="1" aria-label="Pan 声像滑块"><input id="editPan" type="number" min="-25" max="25" step="1" required></div></div>
+<fieldset class="color-field"><legend>LED Color <span>Pad 灯光颜色</span></legend><div id="editColors" class="color-options"></div></fieldset>
+<div class="edit-field"><label for="editBpm">BPM <span>采样原速</span></label><input id="editBpm" type="number" min="0" max="200" step="1" required><small>0：不参与 Beat Sync；或填 50–200。</small></div>
+<div class="playback-fields"><label><input id="editOneshot" type="checkbox"><span>One Shot<small>开启：触发后完整播放；关闭：按住发声。</small></span></label><label><input id="editLoop" type="checkbox"><span>Loop<small>循环播放</small></span></label></div>
+</div>
+<p class="edit-footnote">Pitch 同时改变播放速度。相同 Group 的声音会互相截断。起止点设置保留，本版暂不编辑。</p>
+<p id="editMessage" role="status" aria-live="polite"></p>
+<div class="dialog-actions"><button type="button" id="editCancel">取消</button><button type="submit" id="editSave" class="primary">保存到机器</button></div>
+</form>
+</dialog>
+<script>/*CORE*/</script><script>/*UPLOAD*/</script><script>/*PAD*/</script><script>/*APP*/</script><script>/*UPLOAD_UI*/</script><script>/*PAD_UI*/</script>
+</body></html>
