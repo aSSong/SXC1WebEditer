@@ -1,0 +1,18 @@
+# Publish only the editor source and website. Local device data stays private.
+/*
+!/.gitignore
+!/.nojekyll
+!/README.md
+!/index.html
+!/src/
+/src/*
+!/src/README.md
+!/src/build.py
+!/src/page.html
+!/src/style.css
+!/src/core.js
+!/src/upload.js
+!/src/pad.js
+!/src/app.js
+!/src/upload-ui.js
+!/src/pad-ui.js
