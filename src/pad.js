@@ -29,7 +29,10 @@ const SXCPad = ((S,U)=>{
   }
   function related(entries,pad){return entries.filter(e=>e.name.toLowerCase().startsWith(p2(pad)+'.'))}
   async function binding(midi,bank,slot){const b=await midi.bankState();if(b.bank!==bank||b.active!==slot||b.mapping[slot]!==bank-1)throw Error('机器的 Bank 已改变，请重新打开此 Pad');return b}
-  async function readValues(midi,slot,pad){return validate(await midi.readConfigs(0x04000000+(slot*16+pad-1)*65536,10))}
+  async function readValues(midi,slot,pad){
+    target(1,pad);if(!Number.isInteger(slot)||slot<0||slot>3)throw Error('Bank 槽位无效');
+    return validate(await midi.readConfigs(0x04000000+(slot*16+pad-1)*65536,10));
+  }
   async function waitDb(midi,bank,pad,expected,checkpoint=()=>{}){
     for(let attempt=0;attempt<8;attempt++){
       checkpoint();const entries=await midi.directory(bank),db=entries.find(e=>e.name.toLowerCase()===p2(pad)+'.wav.db');
@@ -89,6 +92,6 @@ const SXCPad = ((S,U)=>{
       return {report,snapshot:{...current,values:desired,dbRaw:saved.raw,dbName:saved.db.name,entries:related(saved.entries,pad),allEntries:saved.entries}};
     }catch(e){report.failed_at=report.state;report.error=e.message;record(report.attempted.length?'needs_verification':'incomplete');e.editReport=report;throw e}
   }
-  return {keys,editable,colors,parseDb,validate,patchValues,snapshot,paste,save};
+  return {keys,editable,colors,parseDb,validate,readValues,patchValues,snapshot,paste,save};
 })(typeof module!=='undefined'?require('./core.js'):SXC,typeof module!=='undefined'?require('./upload.js'):SXCUpload);
 if(typeof module!=='undefined')module.exports=SXCPad;

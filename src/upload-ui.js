@@ -56,7 +56,7 @@ async function submitPreparedUpload(){
     try{
       await state.midi.selectBank(bank);checkAbort();
       result=await SXCUpload.upload(state.midi,{bank,pad,raw:input.raw,sourceName:input.name,checkpoint:checkAbort,progress,journal:uploadJournal});
-      state.entries=result.after;state.cache.set(pad2(pad)+'.wav',input.raw);
+      state.entries=result.after;state.cache.set(pad2(pad)+'.wav',input.raw);state.padSettings.set(bank+':'+pad,SXCPad.parseDb(SXCUpload.defaults()));
       notice(`上传完成：Bank ${pad2(bank)} / Pad ${pad2(pad)}。音频和设置已从机器读回并核对，可按机器上的 Pad 试听。`);
     }catch(e){failure=e.uploadReport;throw e}
   });
