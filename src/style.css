@@ -4,6 +4,17 @@ dialog{width:min(570px,calc(100vw - 28px));max-height:90vh;overflow:auto;border:
 .pads.dragging .pad[data-droppable="true"]{border-color:#607d3e;background:#202b18}.pad.drop-target{border:2px solid var(--accent)!important;background:#344923!important;box-shadow:0 0 0 3px #d4f98320}.pad.drop-target h2,.pad.drop-target p{color:var(--accent)}
 
 .pad-board{overflow-x:auto;padding:3px;margin:-3px}.pads{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:760px){.pads{min-width:580px}}
+/* The status area never changes the Pad board's position during a transfer. */
+.status-area{display:grid;grid-template-areas:"status";height:76px;margin:0 0 16px}
+.status-area>*{grid-area:status;min-width:0;min-height:0;margin:0!important;overflow:auto;overflow-wrap:anywhere}
+.status-idle{display:flex;align-items:center;padding:12px 16px;border:1px solid var(--line);border-radius:7px;color:var(--muted);font-size:11px;background:#171c14}
+.status-area .progress-panel{display:flex;flex-direction:column;justify-content:center}
+.status-area .progress-panel>div{min-width:0}.status-area #progressText{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.status-area #cancel{flex:none}
+.preview-loading [data-preview-enabled]:disabled{opacity:1;cursor:wait}
+.pad .sample-info{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:12px}
+.preview-loop{font:600 10px/1 var(--mono);padding:7px 9px;border-radius:6px;background:#1c2219;color:#929b8b;border:1px solid #46503e;flex:none}
+.preview-loop[aria-pressed="true"]{background:var(--pad-color,var(--accent));border-color:var(--pad-color,var(--accent));color:#11170d;box-shadow:0 0 10px color-mix(in srgb,var(--pad-color,var(--accent)) 20%,transparent)}
+.preview-loop[aria-pressed="true"]:hover{background:var(--pad-color,var(--accent));border-color:var(--pad-color,var(--accent));filter:brightness(1.12)}
 /* v0.4: Pad clipboard and sound editor. */
 .pad{min-height:196px}.pad:not(.empty){border:3px solid var(--pad-color,var(--line))}.pad .pad-number{color:var(--pad-color,var(--accent))}.pad-tools{margin-top:6px}.pad-tools button{background:#1c2119;font-size:10px}.pad-setting{margin-top:8px!important;color:#a0ad91!important}.pad .paste{background:#d4f983;color:#1b2513;border-color:#d4f983;font-weight:600}
 .clipboard-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 16px;padding:15px 18px;border:1px solid #6b8544;border-radius:8px;background:#202b18}.clipboard-bar>div{display:flex;flex-direction:column;gap:4px}.clipboard-bar strong{font-size:14px;font-weight:500}.clipboard-bar #clipboardDetail{font-size:11px;color:#a4b497}.clipboard-bar button{font-size:11px;padding:7px 12px}
