@@ -16,3 +16,6 @@
 !/src/app.js
 !/src/upload-ui.js
 !/src/pad-ui.js
+!/src/batch.js
+!/src/batch-ui.js
+!/src/test-batch.cjs

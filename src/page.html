@@ -7,7 +7,7 @@
 <div class="layout">
 <aside><div class="sidebar-head"><span>采样库</span><span id="bankCount" class="muted">80 BANKS</span></div><div class="source-tag" id="sourceTag">等待连接设备</div><nav id="banks" aria-label="选择 Bank"></nav><div class="local-panel"><span class="eyebrow">LOCAL ARCHIVE</span><button id="saved" hidden>查看已保存备份 ↗</button><button id="folder">打开备份文件夹</button><input id="folderInput" type="file" webkitdirectory multiple hidden><p>离线浏览已保存的采样。<br>所有文件都留在这台电脑。</p></div></aside>
 <main>
-<div class="heading"><div><span class="eyebrow">YOUR SOUND, ORGANIZED.</span><h1 id="bankTitle">Bank <em>01</em></h1><p id="bankSubtitle">每一页对应 16 个 Pad</p></div><div class="bank-actions"><button id="uploadOpen" disabled>↑ 上传采样</button><button id="refresh" disabled>↻ 刷新本页</button><button id="downloadBank" class="primary" disabled>↓ 下载整页 ZIP</button></div></div>
+<div class="heading"><div><span class="eyebrow">YOUR SOUND, ORGANIZED.</span><h1 id="bankTitle">Bank <em>01</em></h1><p id="bankSubtitle">每一页对应 16 个 Pad</p></div><div class="bank-actions"><button id="uploadOpen" disabled>↑ 上传采样</button><button id="batchOpen">↑ 批量上传采样</button><button id="refresh" disabled>↻ 刷新本页</button><button id="downloadBank" class="primary" disabled>↓ 下载整页 ZIP</button></div></div>
 <div class="page-bar"><div><span id="sampleCount">尚未读取</span><span class="divider">/</span><span id="bankSize">—</span></div><div class="pager"><button id="prev" aria-label="上一页" disabled>←</button><span id="pageNumber">01 / 80</span><button id="next" aria-label="下一页">→</button></div></div>
 <div id="welcome" class="welcome"><div class="welcome-icon" aria-hidden="true">⌁</div><div><h2>把机器里的声音，带到电脑上。</h2><p>连接 SXC-1，按 Bank 浏览、下载或上传采样。<br>也可以打开备份，在离线时整理、试听和下载。</p><span>电脑 Chrome / Edge · DATA 接口连接 · 允许 MIDI</span></div></div>
 <div class="status-area"><p class="status-idle" aria-hidden="true">试听与传输状态会显示在这里</p>
@@ -18,8 +18,8 @@
 <div id="clipboardBar" class="clipboard-bar" hidden><div><span class="eyebrow">PAD CLIPBOARD</span><strong id="clipboardTitle"></strong><span id="clipboardDetail"></span></div><button id="clearClipboard">清空复制</button></div>
 <div id="editReceipt" class="receipt" hidden><span id="editReceiptText"></span><button id="editReceiptDownload">下载编辑记录</button></div>
 <div class="pad-board"><section id="pads" class="pads" aria-label="采样列表，Pad 1 在左下"></section></div>
-<footer><span><i class="dot"></i> 采样管理器 <small>v0.4.3</small></span><span>完整复制 · Pad 编辑 · 本机处理</span></footer>
-<details class="help"><summary>使用说明与连接帮助</summary><div><p>使用机器的 DATA 接口连接电脑，在 Chrome 或 Edge 中打开本页，点击“连接 SXC-1”，允许 MIDI / SysEx 访问。连接期间请退出官方 App 或其他读取 SXC-1 的程序。</p><p>每页对应一个 Bank，连接时打开机器当前 Bank，网页翻页时机器同步切换。将一个 WAV 拖到空 Pad 会直接检查、转换并上传；已有采样的 Pad 不接受拖入。点击“试听”会先读取该采样，再由电脑播放；右上角 Loop 点亮时循环试听，熄灭时单次播放；播放中可随时切换，仅控制网页试听。WAV 下载保留机器上的原始文件。整页 ZIP 包含该 Bank 的全部文件、Pad 设置和校验清单。空 Pad 不会生成占位音频。</p><p>选择“打开备份文件夹”时，请选择包含 manifest.json 和 Bank01 等目录的备份根目录，或解压后的整页 ZIP 文件夹。选择的文件只在本页读取。</p><p>读取失败或取消后，重新连接设备即可继续。下载期间不要更改机器上的采样。网页单个文件上限 256 MB，整页上限 512 MB。上传支持 60 秒以内的单/双声道 WAV（PCM 8/16/24/32-bit、Float 32-bit），在本机转换为 48 kHz / 16-bit 双声道。只开放空 Pad；以单次播放、音量 100% 加载，不保留源文件的循环点等设置。上传期间请勿操作机器或同时连接官方 App。</p><p>有采样的 Pad 可点击“复制”，再到同一或其他 Bank 的空 Pad 点击“粘贴”。复制原始 WAV、波形、起止点、Pad 设置及同名前缀的附属文件，不重新编码；不包含 Pattern。每个复制文件最大 64 MB。“Edit 编辑”支持 Level、Pitch、Group、LED 颜色、Pan、One Shot、Loop、BPM；保存后核对实时参数和机器保存文件。编辑记录保留修改前后的设置。</p><p>在线版直接通过 HTTPS 地址使用；本地版可通过 localhost 服务或附带的启动器打开。网页试听播放原始 WAV，不模拟机器的播放参数。音频在本机处理，不上传到网站服务器；浏览器本地保留最近一次上传和编辑记录。离开页面会清空临时缓存和复制剪贴板，已下载的文件仍在电脑上。</p><p>非官方工具，与 CASIO 无隶属关系。已在 macOS / Chrome / 固件 1.4.1 上完成实机验证。</p></div></details>
+<footer><span><i class="dot"></i> 采样管理器 <small>v0.5.0</small></span><span>完整复制 · Pad 编辑 · 本机处理</span></footer>
+<details class="help"><summary>使用说明与连接帮助</summary><div><p>使用机器的 DATA 接口连接电脑，在 Chrome 或 Edge 中打开本页，点击“连接 SXC-1”，允许 MIDI / SysEx 访问。连接期间请退出官方 App 或其他读取 SXC-1 的程序。</p><p>每页对应一个 Bank，连接时打开机器当前 Bank，网页翻页时机器同步切换。将一个 WAV 拖到空 Pad 会直接检查、转换并上传；已有采样的 Pad 不接受拖入。点击“试听”会先读取该采样，再由电脑播放；右上角 Loop 点亮时循环试听，熄灭时单次播放；播放中可随时切换，仅控制网页试听。WAV 下载保留机器上的原始文件。整页 ZIP 包含该 Bank 的全部文件、Pad 设置和校验清单。空 Pad 不会生成占位音频。</p><p>“批量上传采样”支持多选音频或拖入文件夹（包含子文件夹），按路径和文件名从指定 Bank / Pad 连续填充。先检查全部连续空位和音频；占用或越界时不开始上传，保留列表供处理后重试。关闭弹窗仍保留列表，刷新页面会清空。批量上传不恢复原备份的 Pad 设置；需要完整设置时使用复制/粘贴。</p><p>选择“打开备份文件夹”时，请选择包含 manifest.json 和 Bank01 等目录的备份根目录，或解压后的整页 ZIP 文件夹。选择的文件只在本页读取。</p><p>读取失败或取消后，重新连接设备即可继续。下载期间不要更改机器上的采样。网页单个文件上限 256 MB，整页上限 512 MB。上传支持 60 秒以内的单/双声道 WAV（PCM 8/16/24/32-bit、Float 32-bit），在本机转换为 48 kHz / 16-bit 双声道。只开放空 Pad；以单次播放、音量 100% 加载，不保留源文件的循环点等设置。上传期间请勿操作机器或同时连接官方 App。</p><p>有采样的 Pad 可点击“复制”，再到同一或其他 Bank 的空 Pad 点击“粘贴”。复制原始 WAV、波形、起止点、Pad 设置及同名前缀的附属文件，不重新编码；不包含 Pattern。每个复制文件最大 64 MB。“Edit 编辑”支持 Level、Pitch、Group、LED 颜色、Pan、One Shot、Loop、BPM；保存后核对实时参数和机器保存文件。编辑记录保留修改前后的设置。</p><p>在线版直接通过 HTTPS 地址使用；本地版可通过 localhost 服务或附带的启动器打开。网页试听播放原始 WAV，不模拟机器的播放参数。音频在本机处理，不上传到网站服务器；浏览器本地保留最近一次上传和编辑记录。离开页面会清空临时缓存和复制剪贴板，已下载的文件仍在电脑上。</p><p>非官方工具，与 CASIO 无隶属关系。已在 macOS / Chrome / 固件 1.4.1 上完成实机验证。</p></div></details>
 </main></div>
 <audio id="player" hidden></audio>
 <dialog id="uploadDialog" aria-labelledby="uploadTitle">
@@ -30,6 +30,21 @@
 <div id="uploadPreview" hidden><h3 id="uploadFilename"></h3><p id="uploadFormat"></p><canvas id="uploadWave" aria-label="待上传采样波形"></canvas><audio id="uploadAudio" controls preload="metadata"></audio><p class="conversion">上传格式：48 kHz / 16-bit · 双声道<br>播放设置：单次播放 · 音量 100%<br>包含机器屏幕所需的波形预览</p></div>
 <p id="uploadMessage" role="status" aria-live="polite">文件只在这台电脑处理。</p>
 <div class="dialog-actions"><button id="uploadConverted" disabled>下载转换后的 WAV</button><button id="uploadSubmit" class="primary" disabled>上传到空 Pad</button></div>
+</dialog>
+<dialog id="batchDialog" aria-labelledby="batchTitle">
+<div class="dialog-head"><div><span class="eyebrow">BATCH IMPORT</span><h2 id="batchTitle">批量上传采样</h2></div><button type="button" id="batchClose" aria-label="关闭批量上传窗口">✕</button></div>
+<div class="batch-body"><p class="dialog-intro">从指定位置连续填入。先检查整段空位与全部音频，再逐个上传。</p>
+<div id="batchDrop" class="batch-drop"><strong>将多个音频或文件夹拖到这里</strong><span>包含子文件夹 · 按路径与文件名排序 · 重新选择会替换列表</span><div class="batch-pickers"><button type="button" id="batchFilesButton">选择多个音频</button><button type="button" id="batchFolderButton">选择文件夹</button></div><input id="batchFiles" type="file" multiple accept="audio/*,.wav,.wave,.mp3,.flac,.m4a,.aac,.ogg,.opus,.aif,.aiff" hidden><input id="batchFolder" type="file" webkitdirectory multiple hidden></div>
+<div class="batch-start"><label for="batchBank">起始 Bank<select id="batchBank" aria-label="起始 Bank"></select></label><label for="batchPad">起始 Pad<select id="batchPad" aria-label="起始 Pad"></select></label><p>Pad 1 → 16，随后进入下一 Bank。<br>遇到占用位置会停止检查，不跳过。</p></div>
+<div class="batch-summary"><strong id="batchCount">尚未选择音频</strong><button type="button" id="batchClear">清空列表</button></div>
+<p id="batchRange" class="batch-range"></p><p id="batchIgnored" class="batch-ignored"></p>
+<div class="batch-list"><p id="batchListEmpty">待上传文件会列在这里，并显示对应 Bank / Pad。</p><table id="batchTable" hidden><thead><tr><th>#</th><th>音频</th><th>Bank / Pad</th><th>状态</th><th><span class="sr-only">移除</span></th></tr></thead><tbody id="batchRows"></tbody></table></div>
+<p class="batch-format">每个文件最长 60 秒、最大 64 MB，单/双声道。支持 WAV，以及浏览器可解码的 MP3、FLAC、M4A 等格式。统一上传为 48 kHz / 16-bit，包含机器波形，以默认 Pad 设置加载。</p>
+</div><div class="batch-feedback"><div id="batchProgressPanel" class="batch-progress" hidden><span id="batchProgressText" role="status" aria-live="polite"></span><progress id="batchProgress" max="100" value="0" aria-label="批量上传当前步骤进度"></progress></div>
+<p id="batchMessage" role="status" aria-live="polite">关闭弹窗会保留文件列表；刷新或离开页面会清空。</p>
+</div><p id="batchConnectionHint" class="batch-connection">连接机器后即可检查空位并上传。</p>
+<div class="dialog-actions batch-actions"><button type="button" id="batchReceipt" disabled>下载批量记录</button><div><button type="button" id="batchStop" hidden>停止</button><button type="button" id="batchConnect">连接 SXC-1</button><button type="button" id="batchSubmit" class="primary" disabled>检查并上传</button></div></div>
+<p class="batch-footnote">空位不足时不会上传本轮文件，处理后可直接重试。传送中停止会保留已完成采样；重试会继续剩余部分。操作机器前请等待传送停止。</p>
 </dialog>
 <dialog id="editDialog" aria-labelledby="editTitle">
 <form id="editForm">
@@ -49,5 +64,5 @@
 <div class="dialog-actions"><button type="button" id="editCancel">取消</button><button type="submit" id="editSave" class="primary">保存到机器</button></div>
 </form>
 </dialog>
-<script>/*CORE*/</script><script>/*UPLOAD*/</script><script>/*PAD*/</script><script>/*APP*/</script><script>/*UPLOAD_UI*/</script><script>/*PAD_UI*/</script>
+<script>/*CORE*/</script><script>/*UPLOAD*/</script><script>/*PAD*/</script><script>/*BATCH*/</script><script>/*APP*/</script><script>/*UPLOAD_UI*/</script><script>/*PAD_UI*/</script><script>/*BATCH_UI*/</script>
 </body></html>

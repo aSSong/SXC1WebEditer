@@ -23,13 +23,29 @@ dialog{width:min(570px,calc(100vw - 28px));max-height:90vh;overflow:auto;border:
 .clipboard-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 16px;padding:15px 18px;border:1px solid #6b8544;border-radius:8px;background:#202b18}.clipboard-bar>div{display:flex;flex-direction:column;gap:4px}.clipboard-bar strong{font-size:14px;font-weight:500}.clipboard-bar #clipboardDetail{font-size:11px;color:#a4b497}.clipboard-bar button{font-size:11px;padding:7px 12px}
 #editDialog{width:min(700px,calc(100vw - 28px));padding:28px 30px}#editDialog .dialog-intro{margin-bottom:22px}.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 26px}.edit-field>label,.color-field legend{display:block;font-size:13px;font-weight:600;margin-bottom:10px}.edit-field label span,.color-field legend span{font-size:11px;font-weight:400;color:var(--muted);margin-left:7px}.range-pair{display:flex;gap:12px;align-items:center}.range-pair input[type=range]{min-width:0;flex:1;accent-color:var(--accent);cursor:pointer}.edit-field input[type=number]{width:80px;padding:10px 8px;background:#222b1d;border:1px solid #47563d;border-radius:6px;color:var(--text);font:14px var(--mono);text-align:center}.edit-field>small,.playback-fields small{display:block;font-size:10px;color:var(--muted);margin-top:7px;line-height:1.7}.color-field{grid-column:1/-1;border:0;padding:0;margin:0;min-width:0}.color-options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.color-option{display:flex;align-items:center;gap:8px;font-size:11px;padding:10px 8px;border:1px solid #394431;border-radius:7px;cursor:pointer;background:#1f261a}.color-option:has(input:checked){border-color:var(--accent);background:#2b3820}.color-option input{position:absolute;opacity:0;width:1px;height:1px}.color-option:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:3px}.color-option i{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--swatch);box-shadow:0 0 10px color-mix(in srgb,var(--swatch) 20%,transparent)}.playback-fields{display:flex;flex-direction:column;gap:12px}.playback-fields>label{display:flex;align-items:flex-start;gap:10px;font-size:12px;cursor:pointer}.playback-fields input{accent-color:var(--accent);margin-top:3px;width:16px;height:16px}.playback-fields small{margin-top:2px}.edit-footnote{font-size:10px;line-height:1.8;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;margin:22px 0 0}#editMessage{font-size:12px;color:#b8d698;min-height:20px;margin-bottom:0}#editMessage.error{color:#ffd3bc}.edit-grid input:disabled,.edit-grid select:disabled,.color-option:has(input:disabled){opacity:.5;cursor:wait}
 @media(max-width:560px){#editDialog{padding:22px 18px}.edit-grid{grid-template-columns:1fr;gap:18px}.color-options{grid-template-columns:repeat(2,1fr)}.clipboard-bar{align-items:flex-start}.range-pair input[type=range]{min-width:90px}.edit-footnote{margin-top:16px}}
+
+/* Batch import keeps its queue visible while preflight blocks or retries. */
+#batchDialog{width:min(820px,calc(100vw - 28px));padding:28px 30px}
+#batchDialog .dialog-intro{margin-bottom:18px}.batch-drop{border:1px dashed #6d8750;border-radius:10px;background:#222c1b;padding:22px;text-align:center;transition:background .15s,border-color .15s}
+.batch-drop>strong{display:block;font-size:17px;font-weight:500;color:var(--accent)}.batch-drop>span{display:block;font-size:11px;color:var(--muted);margin:9px 0 16px}.batch-drop.drop-target{background:#344923;border-color:var(--accent);outline:2px solid #d4f98355}.batch-drop.disabled{opacity:.65}.batch-pickers{display:flex;gap:10px;justify-content:center}.batch-pickers button{font-size:12px;padding:8px 14px}
+.batch-start{display:grid;grid-template-columns:135px 135px 1fr;gap:16px;align-items:end;margin:22px 0}.batch-start label{font-size:12px;color:var(--muted)}.batch-start select{margin-top:8px}.batch-start p{font-size:11px;color:var(--muted);line-height:1.8;margin:0 0 3px}
+.batch-summary{display:flex;justify-content:space-between;align-items:center;gap:12px}.batch-summary strong{font-size:14px;font-weight:500}.batch-summary button{padding:5px 10px;font-size:11px}.batch-range{font:12px/1.7 var(--mono);color:var(--accent);margin:8px 0}.batch-range.error{color:#ffd3bc}.batch-ignored{font-size:11px;color:var(--muted);margin:0 0 10px}.batch-ignored:empty{display:none}
+.batch-list{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:8px;background:#151a12}.batch-list>p{font-size:12px;color:var(--muted);text-align:center;padding:28px 14px}.batch-list table{border-collapse:collapse;width:100%;table-layout:fixed;text-align:left;font-size:12px}.batch-list th{position:sticky;top:0;background:#252e1e;color:#9aaa8b;font-size:10px;font-weight:500;z-index:1}.batch-list th,.batch-list td{padding:10px 8px;border-bottom:1px solid #303929}.batch-list tr:last-child td{border-bottom:0}.batch-list th:first-child{width:35px}.batch-list th:nth-child(3){width:85px}.batch-list th:nth-child(4){width:90px}.batch-list th:last-child{width:37px}.batch-order,.batch-target{font:11px var(--mono);color:var(--muted)}.batch-target{color:#c8d9b4}.batch-file strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:500}.batch-file small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.batch-status{font-size:11px;color:var(--muted)}.batch-status[data-state=complete],.batch-status[data-state=uploading]{color:var(--accent)}.batch-status[data-state=invalid],.batch-status[data-state=uncertain],.batch-status[data-state=failed]{color:#ffc5a6}.batch-remove{padding:3px 7px;font-size:14px;border:0;background:transparent;color:var(--muted)}
+.batch-format,.batch-footnote,.batch-connection{font-size:11px;color:var(--muted);line-height:1.8}.batch-format{margin:12px 0}.batch-footnote{margin:16px 0 0;border-top:1px solid var(--line);padding-top:12px}.batch-progress{border:1px solid #4b6334;border-radius:7px;padding:12px;margin:12px 0;background:#222c1b}.batch-progress span{font-size:12px;display:block;overflow-wrap:anywhere}#batchMessage{min-height:48px;border:1px solid var(--line);background:#20281a;border-radius:7px;padding:12px 14px;font-size:12px;line-height:1.8;overflow-wrap:anywhere;margin:12px 0 0}#batchMessage.error{color:#ffd3bc;border-color:#73503a;background:#33251e}.batch-actions{align-items:center}.batch-actions>div{display:flex;gap:10px;flex-wrap:wrap}.batch-connection{color:#d8d1a9;margin:10px 0 0}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:600px){#batchDialog{padding:22px 16px}.batch-start{grid-template-columns:1fr 1fr;gap:12px}.batch-start p{grid-column:1/-1}.batch-drop{padding:20px 12px}.batch-drop>strong{font-size:15px}.batch-list th:nth-child(3){width:66px}.batch-list th:nth-child(4){width:72px}.batch-list th:first-child{width:27px}.batch-list th,.batch-list td{padding:9px 5px}.batch-actions{align-items:stretch;flex-direction:column}.batch-actions>div{justify-content:flex-end}}
+
+#batchDialog{overflow:hidden}#batchDialog[open]{display:flex;flex-direction:column}#batchDialog>.dialog-head,#batchDialog>.batch-actions,#batchDialog>.batch-footnote{flex:none}.batch-body{overflow:auto;min-height:0;padding-right:8px;margin-right:-8px;margin-top:8px}.batch-actions{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}.batch-footnote{border:0;padding:0;margin-top:12px}
+
+.batch-feedback{display:grid;grid-template-areas:"batch-status";height:78px;flex:none;margin-top:12px}.batch-feedback>*{grid-area:batch-status;min-height:0!important;overflow:auto;margin:0!important}.batch-feedback:has(.batch-progress:not([hidden])) #batchMessage{visibility:hidden}.batch-feedback .batch-progress{display:flex;flex-direction:column;justify-content:center}#batchDialog>.batch-connection{flex:none}
+
+#batchDialog.has-files .dialog-intro{display:none}#batchDialog.has-files .batch-drop{padding:12px;display:flex;align-items:center;justify-content:space-between;gap:12px}#batchDialog.has-files .batch-drop>strong{font-size:12px}#batchDialog.has-files .batch-drop>span{display:none}#batchDialog.has-files .batch-start{margin:16px 0}@media(max-width:600px){#batchDialog.has-files .batch-drop{align-items:flex-start;flex-direction:column;gap:10px}}
 </style></head>
 <body>
 <header class="topbar"><div class="brand"><span class="logo" aria-hidden="true">▥</span><strong>SXC—1</strong><span class="brand-sub">SAMPLE LIBRARY</span></div><div class="top-actions"><span id="connection" class="connection">● 未连接</span><button id="connect" class="primary">连接 SXC-1</button><button id="disconnect" hidden>断开</button></div></header>
 <div class="layout">
 <aside><div class="sidebar-head"><span>采样库</span><span id="bankCount" class="muted">80 BANKS</span></div><div class="source-tag" id="sourceTag">等待连接设备</div><nav id="banks" aria-label="选择 Bank"></nav><div class="local-panel"><span class="eyebrow">LOCAL ARCHIVE</span><button id="saved" hidden>查看已保存备份 ↗</button><button id="folder">打开备份文件夹</button><input id="folderInput" type="file" webkitdirectory multiple hidden><p>离线浏览已保存的采样。<br>所有文件都留在这台电脑。</p></div></aside>
 <main>
-<div class="heading"><div><span class="eyebrow">YOUR SOUND, ORGANIZED.</span><h1 id="bankTitle">Bank <em>01</em></h1><p id="bankSubtitle">每一页对应 16 个 Pad</p></div><div class="bank-actions"><button id="uploadOpen" disabled>↑ 上传采样</button><button id="refresh" disabled>↻ 刷新本页</button><button id="downloadBank" class="primary" disabled>↓ 下载整页 ZIP</button></div></div>
+<div class="heading"><div><span class="eyebrow">YOUR SOUND, ORGANIZED.</span><h1 id="bankTitle">Bank <em>01</em></h1><p id="bankSubtitle">每一页对应 16 个 Pad</p></div><div class="bank-actions"><button id="uploadOpen" disabled>↑ 上传采样</button><button id="batchOpen">↑ 批量上传采样</button><button id="refresh" disabled>↻ 刷新本页</button><button id="downloadBank" class="primary" disabled>↓ 下载整页 ZIP</button></div></div>
 <div class="page-bar"><div><span id="sampleCount">尚未读取</span><span class="divider">/</span><span id="bankSize">—</span></div><div class="pager"><button id="prev" aria-label="上一页" disabled>←</button><span id="pageNumber">01 / 80</span><button id="next" aria-label="下一页">→</button></div></div>
 <div id="welcome" class="welcome"><div class="welcome-icon" aria-hidden="true">⌁</div><div><h2>把机器里的声音，带到电脑上。</h2><p>连接 SXC-1，按 Bank 浏览、下载或上传采样。<br>也可以打开备份，在离线时整理、试听和下载。</p><span>电脑 Chrome / Edge · DATA 接口连接 · 允许 MIDI</span></div></div>
 <div class="status-area"><p class="status-idle" aria-hidden="true">试听与传输状态会显示在这里</p>
@@ -40,8 +56,8 @@ dialog{width:min(570px,calc(100vw - 28px));max-height:90vh;overflow:auto;border:
 <div id="clipboardBar" class="clipboard-bar" hidden><div><span class="eyebrow">PAD CLIPBOARD</span><strong id="clipboardTitle"></strong><span id="clipboardDetail"></span></div><button id="clearClipboard">清空复制</button></div>
 <div id="editReceipt" class="receipt" hidden><span id="editReceiptText"></span><button id="editReceiptDownload">下载编辑记录</button></div>
 <div class="pad-board"><section id="pads" class="pads" aria-label="采样列表，Pad 1 在左下"></section></div>
-<footer><span><i class="dot"></i> 采样管理器 <small>v0.4.3</small></span><span>完整复制 · Pad 编辑 · 本机处理</span></footer>
-<details class="help"><summary>使用说明与连接帮助</summary><div><p>使用机器的 DATA 接口连接电脑，在 Chrome 或 Edge 中打开本页，点击“连接 SXC-1”，允许 MIDI / SysEx 访问。连接期间请退出官方 App 或其他读取 SXC-1 的程序。</p><p>每页对应一个 Bank，连接时打开机器当前 Bank，网页翻页时机器同步切换。将一个 WAV 拖到空 Pad 会直接检查、转换并上传；已有采样的 Pad 不接受拖入。点击“试听”会先读取该采样，再由电脑播放；右上角 Loop 点亮时循环试听，熄灭时单次播放；播放中可随时切换，仅控制网页试听。WAV 下载保留机器上的原始文件。整页 ZIP 包含该 Bank 的全部文件、Pad 设置和校验清单。空 Pad 不会生成占位音频。</p><p>选择“打开备份文件夹”时，请选择包含 manifest.json 和 Bank01 等目录的备份根目录，或解压后的整页 ZIP 文件夹。选择的文件只在本页读取。</p><p>读取失败或取消后，重新连接设备即可继续。下载期间不要更改机器上的采样。网页单个文件上限 256 MB，整页上限 512 MB。上传支持 60 秒以内的单/双声道 WAV（PCM 8/16/24/32-bit、Float 32-bit），在本机转换为 48 kHz / 16-bit 双声道。只开放空 Pad；以单次播放、音量 100% 加载，不保留源文件的循环点等设置。上传期间请勿操作机器或同时连接官方 App。</p><p>有采样的 Pad 可点击“复制”，再到同一或其他 Bank 的空 Pad 点击“粘贴”。复制原始 WAV、波形、起止点、Pad 设置及同名前缀的附属文件，不重新编码；不包含 Pattern。每个复制文件最大 64 MB。“Edit 编辑”支持 Level、Pitch、Group、LED 颜色、Pan、One Shot、Loop、BPM；保存后核对实时参数和机器保存文件。编辑记录保留修改前后的设置。</p><p>在线版直接通过 HTTPS 地址使用；本地版可通过 localhost 服务或附带的启动器打开。网页试听播放原始 WAV，不模拟机器的播放参数。音频在本机处理，不上传到网站服务器；浏览器本地保留最近一次上传和编辑记录。离开页面会清空临时缓存和复制剪贴板，已下载的文件仍在电脑上。</p><p>非官方工具，与 CASIO 无隶属关系。已在 macOS / Chrome / 固件 1.4.1 上完成实机验证。</p></div></details>
+<footer><span><i class="dot"></i> 采样管理器 <small>v0.5.0</small></span><span>完整复制 · Pad 编辑 · 本机处理</span></footer>
+<details class="help"><summary>使用说明与连接帮助</summary><div><p>使用机器的 DATA 接口连接电脑，在 Chrome 或 Edge 中打开本页，点击“连接 SXC-1”，允许 MIDI / SysEx 访问。连接期间请退出官方 App 或其他读取 SXC-1 的程序。</p><p>每页对应一个 Bank，连接时打开机器当前 Bank，网页翻页时机器同步切换。将一个 WAV 拖到空 Pad 会直接检查、转换并上传；已有采样的 Pad 不接受拖入。点击“试听”会先读取该采样，再由电脑播放；右上角 Loop 点亮时循环试听，熄灭时单次播放；播放中可随时切换，仅控制网页试听。WAV 下载保留机器上的原始文件。整页 ZIP 包含该 Bank 的全部文件、Pad 设置和校验清单。空 Pad 不会生成占位音频。</p><p>“批量上传采样”支持多选音频或拖入文件夹（包含子文件夹），按路径和文件名从指定 Bank / Pad 连续填充。先检查全部连续空位和音频；占用或越界时不开始上传，保留列表供处理后重试。关闭弹窗仍保留列表，刷新页面会清空。批量上传不恢复原备份的 Pad 设置；需要完整设置时使用复制/粘贴。</p><p>选择“打开备份文件夹”时，请选择包含 manifest.json 和 Bank01 等目录的备份根目录，或解压后的整页 ZIP 文件夹。选择的文件只在本页读取。</p><p>读取失败或取消后，重新连接设备即可继续。下载期间不要更改机器上的采样。网页单个文件上限 256 MB，整页上限 512 MB。上传支持 60 秒以内的单/双声道 WAV（PCM 8/16/24/32-bit、Float 32-bit），在本机转换为 48 kHz / 16-bit 双声道。只开放空 Pad；以单次播放、音量 100% 加载，不保留源文件的循环点等设置。上传期间请勿操作机器或同时连接官方 App。</p><p>有采样的 Pad 可点击“复制”，再到同一或其他 Bank 的空 Pad 点击“粘贴”。复制原始 WAV、波形、起止点、Pad 设置及同名前缀的附属文件，不重新编码；不包含 Pattern。每个复制文件最大 64 MB。“Edit 编辑”支持 Level、Pitch、Group、LED 颜色、Pan、One Shot、Loop、BPM；保存后核对实时参数和机器保存文件。编辑记录保留修改前后的设置。</p><p>在线版直接通过 HTTPS 地址使用；本地版可通过 localhost 服务或附带的启动器打开。网页试听播放原始 WAV，不模拟机器的播放参数。音频在本机处理，不上传到网站服务器；浏览器本地保留最近一次上传和编辑记录。离开页面会清空临时缓存和复制剪贴板，已下载的文件仍在电脑上。</p><p>非官方工具，与 CASIO 无隶属关系。已在 macOS / Chrome / 固件 1.4.1 上完成实机验证。</p></div></details>
 </main></div>
 <audio id="player" hidden></audio>
 <dialog id="uploadDialog" aria-labelledby="uploadTitle">
@@ -52,6 +68,21 @@ dialog{width:min(570px,calc(100vw - 28px));max-height:90vh;overflow:auto;border:
 <div id="uploadPreview" hidden><h3 id="uploadFilename"></h3><p id="uploadFormat"></p><canvas id="uploadWave" aria-label="待上传采样波形"></canvas><audio id="uploadAudio" controls preload="metadata"></audio><p class="conversion">上传格式：48 kHz / 16-bit · 双声道<br>播放设置：单次播放 · 音量 100%<br>包含机器屏幕所需的波形预览</p></div>
 <p id="uploadMessage" role="status" aria-live="polite">文件只在这台电脑处理。</p>
 <div class="dialog-actions"><button id="uploadConverted" disabled>下载转换后的 WAV</button><button id="uploadSubmit" class="primary" disabled>上传到空 Pad</button></div>
+</dialog>
+<dialog id="batchDialog" aria-labelledby="batchTitle">
+<div class="dialog-head"><div><span class="eyebrow">BATCH IMPORT</span><h2 id="batchTitle">批量上传采样</h2></div><button type="button" id="batchClose" aria-label="关闭批量上传窗口">✕</button></div>
+<div class="batch-body"><p class="dialog-intro">从指定位置连续填入。先检查整段空位与全部音频，再逐个上传。</p>
+<div id="batchDrop" class="batch-drop"><strong>将多个音频或文件夹拖到这里</strong><span>包含子文件夹 · 按路径与文件名排序 · 重新选择会替换列表</span><div class="batch-pickers"><button type="button" id="batchFilesButton">选择多个音频</button><button type="button" id="batchFolderButton">选择文件夹</button></div><input id="batchFiles" type="file" multiple accept="audio/*,.wav,.wave,.mp3,.flac,.m4a,.aac,.ogg,.opus,.aif,.aiff" hidden><input id="batchFolder" type="file" webkitdirectory multiple hidden></div>
+<div class="batch-start"><label for="batchBank">起始 Bank<select id="batchBank" aria-label="起始 Bank"></select></label><label for="batchPad">起始 Pad<select id="batchPad" aria-label="起始 Pad"></select></label><p>Pad 1 → 16，随后进入下一 Bank。<br>遇到占用位置会停止检查，不跳过。</p></div>
+<div class="batch-summary"><strong id="batchCount">尚未选择音频</strong><button type="button" id="batchClear">清空列表</button></div>
+<p id="batchRange" class="batch-range"></p><p id="batchIgnored" class="batch-ignored"></p>
+<div class="batch-list"><p id="batchListEmpty">待上传文件会列在这里，并显示对应 Bank / Pad。</p><table id="batchTable" hidden><thead><tr><th>#</th><th>音频</th><th>Bank / Pad</th><th>状态</th><th><span class="sr-only">移除</span></th></tr></thead><tbody id="batchRows"></tbody></table></div>
+<p class="batch-format">每个文件最长 60 秒、最大 64 MB，单/双声道。支持 WAV，以及浏览器可解码的 MP3、FLAC、M4A 等格式。统一上传为 48 kHz / 16-bit，包含机器波形，以默认 Pad 设置加载。</p>
+</div><div class="batch-feedback"><div id="batchProgressPanel" class="batch-progress" hidden><span id="batchProgressText" role="status" aria-live="polite"></span><progress id="batchProgress" max="100" value="0" aria-label="批量上传当前步骤进度"></progress></div>
+<p id="batchMessage" role="status" aria-live="polite">关闭弹窗会保留文件列表；刷新或离开页面会清空。</p>
+</div><p id="batchConnectionHint" class="batch-connection">连接机器后即可检查空位并上传。</p>
+<div class="dialog-actions batch-actions"><button type="button" id="batchReceipt" disabled>下载批量记录</button><div><button type="button" id="batchStop" hidden>停止</button><button type="button" id="batchConnect">连接 SXC-1</button><button type="button" id="batchSubmit" class="primary" disabled>检查并上传</button></div></div>
+<p class="batch-footnote">空位不足时不会上传本轮文件，处理后可直接重试。传送中停止会保留已完成采样；重试会继续剩余部分。操作机器前请等待传送停止。</p>
 </dialog>
 <dialog id="editDialog" aria-labelledby="editTitle">
 <form id="editForm">
@@ -396,6 +427,127 @@ const SXCPad = ((S,U)=>{
 })(typeof module!=='undefined'?require('./core.js'):SXC,typeof module!=='undefined'?require('./upload.js'):SXCUpload);
 if(typeof module!=='undefined')module.exports=SXCPad;
 </script><script>'use strict';
+const SXCBatch = ((S,U) => {
+  const MAX_FILES=80*16, AUDIO=/\.(wav|wave|mp3|m4a|aac|flac|ogg|oga|opus|aif|aiff|webm)$/i;
+  const collator=new Intl.Collator('zh-CN',{numeric:true,sensitivity:'base'});
+  const label=t=>`Bank ${String(t.bank).padStart(2,'0')} / Pad ${String(t.pad).padStart(2,'0')}`;
+  class BatchError extends Error {constructor(code,message,details={}){super(message);this.code=code;Object.assign(this,details)}}
+  function plan(count,bank,pad){
+    if(!Number.isInteger(count)||count<1||count>MAX_FILES)throw new BatchError('range',`请选择 1–${MAX_FILES} 个音频文件。`);
+    if(!Number.isInteger(bank)||bank<1||bank>80||!Number.isInteger(pad)||pad<1||pad>16)throw new BatchError('range','起始 Bank 为 1–80，Pad 为 1–16。');
+    const start=(bank-1)*16+pad-1,available=MAX_FILES-start;
+    if(count>available)throw new BatchError('range',`需要 ${count} 个连续 Pad，但从 ${label({bank,pad})} 到机器末尾只有 ${available} 个位置。未上传任何文件，请减少文件或调整起点。`,{available});
+    return Array.from({length:count},(_,i)=>({bank:Math.floor((start+i)/16)+1,pad:(start+i)%16+1}));
+  }
+  function selection(items){
+    let ignored=0;
+    const jobs=items.filter(({file,path})=>{
+      const accepted=!path.split('/').some(s=>s.startsWith('.'))&&(AUDIO.test(file.name)||file.type?.startsWith('audio/'));
+      if(!accepted)ignored++;return accepted;
+    }).map(({file,path})=>({file,path,status:'queued'}));
+    jobs.sort((a,b)=>collator.compare(a.path,b.path)||(a.path<b.path?-1:a.path>b.path?1:0));
+    if(!jobs.length)throw new BatchError('files','没有找到可导入的音频。请选择 WAV、MP3、FLAC、M4A 等音频文件。');
+    if(jobs.length>MAX_FILES)throw new BatchError('files',`共找到 ${jobs.length} 个音频，单次最多 ${MAX_FILES} 个，请分批选择。`);
+    return {jobs,ignored};
+  }
+  function fromFiles(files){return selection([...files].map(file=>({file,path:file.webkitRelativePath||file.name})))}
+  // Capture entry handles synchronously in the drop event, before its data store closes.
+  function captureDrop(transfer){
+    return {items:[...(transfer.items||[])].filter(i=>i.kind==='file').map(i=>({entry:i.webkitGetAsEntry?.()||null,file:i.getAsFile?.()||null})),files:[...(transfer.files||[])]};
+  }
+  async function fromDrop(capture){
+    const files=[];let visited=0;
+    async function visit(entry,prefix='',depth=0){
+      if(++visited>20000||depth>32)throw new BatchError('files','文件夹内容过多或层级太深，请选择更小的采样文件夹。');
+      if(entry.name.startsWith('.'))return;
+      const path=prefix+entry.name;
+      if(entry.isFile){const file=await new Promise((resolve,reject)=>entry.file(resolve,reject));files.push({file,path})}
+      else if(entry.isDirectory){
+        const reader=entry.createReader();
+        // Chromium returns directory entries in pages, often 100 at a time.
+        for(;;){const entries=await new Promise((resolve,reject)=>reader.readEntries(resolve,reject));if(!entries.length)break;for(const child of entries)await visit(child,path+'/',depth+1)}
+      }
+    }
+    if(!capture.items.length)return fromFiles(capture.files);
+    for(const {entry,file} of capture.items){if(entry)await visit(entry);else if(file)files.push({file,path:file.name});else throw new BatchError('files','浏览器无法读取拖入的文件夹，请使用“选择文件夹”。')}
+    return selection(files);
+  }
+  async function prepareFile(file){
+    if(!file.size||file.size>U.MAX_INPUT)throw Error('请选择非空且不超过 64 MB 的音频。');
+    const buffer=await file.arrayBuffer(),raw=new Uint8Array(buffer);
+    if(/\.(wav|wave)$/i.test(file.name)||(S.td.decode(raw.subarray(0,4))==='RIFF'&&S.td.decode(raw.subarray(8,12))==='WAVE'))return U.prepare(raw);
+    if(!globalThis.OfflineAudioContext)throw Error('此浏览器不支持解码此格式，请转换为 WAV 后导入。');
+    let decoded;
+    try{decoded=await new OfflineAudioContext(2,1,48000).decodeAudioData(buffer)}catch{throw Error('浏览器无法解码此音频，请转换为 PCM WAV 后导入。')}
+    if(!decoded.length||decoded.duration>U.MAX_SECONDS)throw Error('每个采样最长 60 秒，请先裁剪。');
+    if(![1,2].includes(decoded.numberOfChannels))throw Error('只支持单声道或双声道音频。');
+    const a=decoded.getChannelData(0),b=decoded.getChannelData(decoded.numberOfChannels===1?0:1),result=U.encodePCM([a,b]);
+    return {...result,raw:U.deviceWaveforms(result.raw),source:{duration:decoded.duration,channels:decoded.numberOfChannels,rate:48000}};
+  }
+  async function preflight(midi,targets,{checkpoint=()=>{},progress=()=>{}}={}){
+    const banks=[...new Set(targets.map(t=>t.bank))],directories=new Map();
+    for(let i=0;i<banks.length;i++){checkpoint();progress(`检查 Bank ${String(banks[i]).padStart(2,'0')} 的空位…`,i/banks.length*100);directories.set(banks[i],await midi.directory(banks[i]));checkpoint()}
+    const conflicts=targets.filter(t=>U.occupied(directories.get(t.bank),t.pad));
+    if(conflicts.length){
+      const first=conflicts[0],free=targets.findIndex(t=>t.bank===first.bank&&t.pad===first.pad);
+      throw new BatchError('occupied',`还需 ${targets.length} 个连续空 Pad，起点后只有 ${free} 个连续空位；${label(first)} 已有采样或设置文件。尚未开始本轮上传。请处理占用位置或调整起点，再点击“重试上传”；已选文件会保留。`,{conflicts,consecutive:free});
+    }
+    return directories;
+  }
+  async function recover(midi,job,checkpoint){
+    const entries=await midi.directory(job.target.bank);checkpoint();
+    if(!U.occupied(entries,job.target.pad)){job.status='queued';job.report=null;return}
+    const expected=job.report?.files||[],prefix=String(job.target.pad).padStart(2,'0')+'.',actual=entries.filter(e=>e.name.toLowerCase().startsWith(prefix));
+    let matches=expected.length>0&&actual.length===expected.length;
+    for(const f of expected){
+      checkpoint();if(!matches)break;
+      const entry=actual.find(e=>e.name===f.name&&e.bytes===f.bytes);
+      if(!entry){matches=false;break}
+      const raw=await midi.read('/bank'+String(job.target.bank-1).padStart(2,'0')+'/'+f.name,f.bytes);
+      matches=await S.sha256(raw)===f.sha256;
+    }
+    if(!matches)throw new BatchError('occupied',`${label(job.target)} 上次上传的结果尚未确认，现有内容与记录不一致。请先检查或清空这个 Pad，再重试。文件列表已保留。`,{conflicts:[job.target]});
+    job.status='complete';job.report={...job.report,state:'complete',recovered:true,after:entries};
+  }
+  async function execute(midi,jobs,{bank,pad,checkpoint=()=>{},progress=()=>{},change=()=>{},journal=()=>{},completed=()=>{},prepare=prepareFile,upload=U.upload}={}){
+    const targets=plan(jobs.length,bank,pad);
+    jobs.forEach((job,i)=>{
+      if(['complete','uncertain'].includes(job.status)&&job.target&&(job.target.bank!==targets[i].bank||job.target.pad!==targets[i].pad))throw new BatchError('range','本批次已开始写入，不能改变原有起点或文件顺序。');
+      job.target=targets[i];job.error=null;
+    });
+    for(const job of jobs.filter(j=>j.status==='uncertain')){checkpoint();progress('核对上次中断的 '+label(job.target)+'…',null);await recover(midi,job,checkpoint);change(job);if(job.status==='complete')completed(job)}
+    const pending=jobs.filter(j=>j.status!=='complete');
+    if(!pending.length)return;
+    await preflight(midi,pending.map(j=>j.target),{checkpoint,progress});
+    // Decode every file before the first write. Keep File handles, not an entire
+    // bank of decoded PCM in RAM. Re-prepare one file at a time while uploading.
+    for(let i=0;i<pending.length;i++){
+      checkpoint();const job=pending[i];job.status='checking';change(job);progress(`校验音频 ${i+1}/${pending.length} · ${job.path}`,i/pending.length*100);
+      try{const result=await prepare(job.file);job.info={duration:result.source.duration,bytes:result.raw.length,clipped:result.clipped};job.status='ready';change(job)}
+      catch(e){job.status='invalid';job.error=e.message;change(job);throw new BatchError('audio',`${job.path}：${e.message} 尚未开始本轮上传；可移除此文件后重试。`)}
+      checkpoint();
+    }
+    // Audio preparation can take time. Re-read the entire span before any Bank
+    // switch, temporary write, or registration. Each single upload checks again.
+    await preflight(midi,pending.map(j=>j.target),{checkpoint,progress});
+    for(const job of pending){
+      checkpoint();job.status='uploading';change(job);
+      try{
+        const prepared=await prepare(job.file);checkpoint();
+        await midi.selectBank(job.target.bank);checkpoint();
+        job.report=await upload(midi,{...job.target,raw:prepared.raw,sourceName:job.path,
+          progress:(text,pct)=>progress(`${jobs.filter(j=>j.status==='complete').length+1}/${jobs.length} · ${label(job.target)} · ${text}`,pct),
+          journal:report=>{job.report=report;journal(report)}});
+        job.status='complete';change(job);completed(job);
+      }catch(e){job.report=e.uploadReport||job.report;job.status=job.report?.state==='needs_verification'?'uncertain':'failed';job.error=e.message;change(job);throw e}
+      // Cancellation waits for the current Pad to finish registration + readback.
+      checkpoint();
+    }
+  }
+  return {MAX_FILES,AUDIO,BatchError,label,plan,fromFiles,captureDrop,fromDrop,prepareFile,preflight,execute};
+})(typeof module!=='undefined'?require('./core.js'):SXC,typeof module!=='undefined'?require('./upload.js'):SXCUpload);
+if(typeof module!=='undefined')module.exports=SXCBatch;
+</script><script>'use strict';
 const $=id=>document.getElementById(id),pad2=n=>String(n).padStart(2,'0'),localDate=()=>{const d=new Date();return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`},size=n=>n>=1048576?(n/1048576).toFixed(2)+' MB':n>=1024?(n/1024).toFixed(1)+' KB':n+' B';
 const state={bank:1,numbers:Array.from({length:80},(_,i)=>i+1),mode:null,midi:null,busy:false,aborted:false,entries:[],cache:new Map(),manifest:null,localFiles:null,playing:null};
 const PAD_ORDER=[13,14,15,16,9,10,11,12,5,6,7,8,1,2,3,4];
@@ -418,7 +570,7 @@ function togglePreviewLoop(pad){
 function stopAudio(){player.pause();player.loop=false;player.removeAttribute('src');if(audioURL)URL.revokeObjectURL(audioURL);audioURL=null;state.playing=null;syncPreviewUI()}
 player.addEventListener('ended',()=>{const pad=state.playing;stopAudio();if(pad!==null)notice(`Pad ${pad2(pad)} 试听结束。`)});
 function renderNav(){const f=document.createDocumentFragment();for(const n of state.numbers){const b=document.createElement('button');b.textContent=pad2(n);b.title=`Bank ${pad2(n)}`;b.setAttribute('aria-label',`Bank ${pad2(n)}`);if(n===state.bank)b.setAttribute('aria-current','page');b.disabled=state.busy;b.onclick=()=>go(n);f.append(b)}$('banks').replaceChildren(f);$('bankCount').textContent=state.numbers.length+' BANKS'}
-function controls(){const i=state.numbers.indexOf(state.bank),available=!!state.mode;$('connect').disabled=state.busy;$('connect').hidden=state.mode==='live';$('disconnect').hidden=state.mode!=='live';$('disconnect').disabled=state.busy;$('folder').disabled=state.busy;$('saved').disabled=state.busy;$('refresh').disabled=state.busy||!available;$('downloadBank').disabled=state.busy||!available||!state.entries.some(e=>/\.wav$/i.test(e.name));$('prev').disabled=state.busy||i<=0;$('next').disabled=state.busy||i<0||i===state.numbers.length-1;document.querySelectorAll('#banks button').forEach(b=>b.disabled=state.busy);document.querySelectorAll('.pad-actions button').forEach(b=>b.disabled=state.busy||!available||(b.dataset.requiresLive==='true'&&state.mode!=='live'));$('progressPanel').hidden=!state.busy;$('cancel').disabled=state.aborted||!!state.uploadLock||!!state.editLock;$('uploadOpen').disabled=state.busy||state.mode!=='live'||!Array.from({length:16},(_,i)=>i+1).some(p=>!SXCUpload.occupied(state.entries,p));if(typeof syncPadControls==='function')syncPadControls()}
+function controls(){const i=state.numbers.indexOf(state.bank),available=!!state.mode;$('connect').disabled=state.busy;$('connect').hidden=state.mode==='live';$('disconnect').hidden=state.mode!=='live';$('disconnect').disabled=state.busy;$('folder').disabled=state.busy;$('saved').disabled=state.busy;$('refresh').disabled=state.busy||!available;$('downloadBank').disabled=state.busy||!available||!state.entries.some(e=>/\.wav$/i.test(e.name));$('prev').disabled=state.busy||i<=0;$('next').disabled=state.busy||i<0||i===state.numbers.length-1;document.querySelectorAll('#banks button').forEach(b=>b.disabled=state.busy);document.querySelectorAll('.pad-actions button').forEach(b=>b.disabled=state.busy||!available||(b.dataset.requiresLive==='true'&&state.mode!=='live'));$('progressPanel').hidden=!state.busy;$('cancel').disabled=state.aborted||!!state.uploadLock||!!state.editLock;$('uploadOpen').disabled=state.busy||state.mode!=='live'||!Array.from({length:16},(_,i)=>i+1).some(p=>!SXCUpload.occupied(state.entries,p));if(typeof syncPadControls==='function')syncPadControls();if(typeof syncBatchControls==='function')syncBatchControls()}
 function title(){const i=state.numbers.indexOf(state.bank);$('bankTitle').replaceChildren(document.createTextNode('Bank '),Object.assign(document.createElement('em'),{textContent:pad2(state.bank)}));$('pageNumber').textContent=`${pad2(i+1)} / ${pad2(state.numbers.length)}`;$('bankSubtitle').textContent=state.mode==='live'?'机器跟随翻页 · 拖入 WAV 到空 Pad':state.mode==='archive'?'本地备份 · 16 个 Pad':'每一页对应 16 个 Pad';$('welcome').hidden=!!state.mode}
 function waveform(canvas,raw){const ctx=canvas.getContext('2d');canvas.width=480;canvas.height=68;ctx.clearRect(0,0,480,68);ctx.strokeStyle=raw?'#a7cc71':'#343e2b';ctx.lineWidth=2;ctx.beginPath();let info=raw&&SXC.waveInfo(raw);if(info?.format===1&&info.bits===16){const v=new DataView(raw.buffer,raw.byteOffset,raw.byteLength),frames=Math.floor(info.length/info.align);for(let x=0;x<120;x++){const from=Math.floor(x*frames/120),to=Math.floor((x+1)*frames/120),step=Math.max(1,Math.floor((to-from)/40));let peak=0;for(let f=from;f<to;f+=step)peak=Math.max(peak,Math.abs(v.getInt16(info.start+f*info.align,true))/32768);const h=Math.max(1,peak*29);ctx.moveTo(x*4+1,34-h);ctx.lineTo(x*4+1,34+h)}}else{ctx.moveTo(0,34);ctx.lineTo(480,34)}ctx.stroke()}
 function render(){title();renderNav();const samples=state.entries.filter(e=>/^\d{2}\.wav$/i.test(e.name));$('sampleCount').textContent=state.mode?`${samples.length} / 16 个采样`:'尚未读取';$('bankSize').textContent=state.mode?size(state.entries.reduce((n,e)=>n+e.bytes,0)):'—';const f=document.createDocumentFragment();for(const n of PAD_ORDER){const e=samples.find(e=>Number(e.name.slice(0,2))===n),card=document.createElement('article');card.className='pad'+(e?'':' empty');card.id='pad-'+n;card.dataset.pad=n;card.dataset.droppable=state.mode==='live'&&!SXCUpload.occupied(state.entries,n)?'true':'false';card.setAttribute('aria-label',`Pad ${pad2(n)}`);const top=document.createElement('div');top.className='pad-top';const number=document.createElement('span');number.className='pad-number';number.textContent=String(n);top.append(number);if(e){const loop=document.createElement('button');loop.type='button';loop.className='preview-loop';loop.dataset.loop=n;loop.textContent='↻ Loop';loop.title='只控制网页试听，不修改机器的 Loop 设置';loop.setAttribute('aria-label',`循环试听 Pad ${pad2(n)}`);loop.setAttribute('aria-pressed',String(state.previewLoops.has(previewLoopKey(n))));loop.onclick=()=>togglePreviewLoop(n);top.append(loop)}else{const type=document.createElement('span');type.className='pad-type';type.textContent='—';top.append(type)}card.append(top);const h=document.createElement('h2'),p=document.createElement('p');h.textContent=e?e.name:state.mode?'空 Pad':'等待读取';if(e)p.className='sample-info';p.textContent=e?size(e.bytes):state.mode==='live'?'拖入 WAV 即可上传':state.mode?'没有采样':'连接设备或打开备份';card.append(h,p);if(e){const canvas=document.createElement('canvas');canvas.setAttribute('aria-label',`Pad ${pad2(n)} 波形（试听后显示）`);card.append(canvas);const actions=document.createElement('div');actions.className='pad-actions';const play=document.createElement('button');play.textContent='▶ 试听';play.dataset.play=n;play.setAttribute('aria-label',`试听 Pad ${pad2(n)}`);play.onclick=()=>preview(e,n);const dl=document.createElement('button');dl.className='download';dl.textContent='↓ WAV';dl.setAttribute('aria-label',`下载 Pad ${pad2(n)} WAV`);dl.onclick=()=>downloadOne(e);actions.append(play,dl);card.append(actions);const tools=document.createElement('div');tools.className='pad-actions pad-tools';for(const [label,fn] of [['复制',()=>copyPad(n)],['Edit 编辑',()=>openEditor(n)]]){const b=document.createElement('button');b.textContent=label;b.setAttribute('aria-label',label+' Pad '+pad2(n));b.dataset.requiresLive='true';b.onclick=fn;tools.append(b)}card.append(tools);const setting=state.padSettings.get(state.bank+':'+n);if(setting){card.style.setProperty('--pad-color',SXCPad.colors[setting[7]][1]);const meta=document.createElement('p');meta.className='pad-setting';meta.textContent=`Level ${setting[3]} · Pitch ${setting[2]-39>0?'+':''}${setting[2]-39} · G${setting[4]}`;card.append(meta)}const cached=state.cache.get(e.name);waveform(canvas,cached);if(cached){const info=SXC.waveInfo(cached);if(info)p.textContent=`${info.duration.toFixed(2)} s · ${info.rate/1000} kHz · ${size(e.bytes)}`}}else if(state.mode==='live'){if(SXCUpload.occupied(state.entries,n)){h.textContent='已有设置文件';p.textContent='保留现有内容'}else{const actions=document.createElement('div');actions.className='pad-actions';const up=document.createElement('button');up.textContent='＋ 上传 WAV';up.setAttribute('aria-label',`上传到 Pad ${pad2(n)}`);up.onclick=()=>openUpload(n);actions.append(up);if(state.clipboard){const paste=document.createElement('button');paste.textContent='粘贴';paste.className='paste';paste.setAttribute('aria-label',`粘贴到 Pad ${pad2(n)}`);paste.onclick=()=>pastePad(n);actions.append(paste)}card.append(actions)}}f.append(card)}$('pads').replaceChildren(f);controls();syncPreviewUI()}
@@ -553,7 +705,7 @@ async function submitPreparedUpload(){
 }
 function dragHasFiles(event){return [...(event.dataTransfer?.types||[])].includes('Files')}
 function dragPad(event){const card=event.target.closest?.('#pads .pad');return card&&{card,pad:Number(card.dataset.pad)}}
-function canDrop(pad){return state.mode==='live'&&!state.busy&&!uploadDialog.open&&Number.isInteger(pad)&&pad>=1&&pad<=16&&!SXCUpload.occupied(state.entries,pad)}
+function canDrop(pad){return state.mode==='live'&&!state.busy&&!document.querySelector('dialog[open]')&&Number.isInteger(pad)&&pad>=1&&pad<=16&&!SXCUpload.occupied(state.entries,pad)}
 function clearDropMarks(){document.querySelectorAll('.pad.drop-target').forEach(c=>c.classList.remove('drop-target'));$('pads').classList.remove('dragging')}
 document.addEventListener('dragover',event=>{
   if(!dragHasFiles(event))return;event.preventDefault();const target=dragPad(event),allowed=target&&canDrop(target.pad);
@@ -660,5 +812,125 @@ $('editReceiptDownload').onclick=()=>{if(lastEditReport)saveBlob(new Blob([JSON.
 try{const report=JSON.parse(localStorage.getItem('sxc-last-edit'));if(report?.format==='sxc-pad-edit-v1'&&Number.isInteger(report.bank)&&Number.isInteger(report.pad)){editJournal(report);state.editLock=false}}catch{}
 window.addEventListener('beforeunload',e=>{if(state.editSaving){e.preventDefault();e.returnValue=''}});
 syncPadControls();
+</script><script>'use strict';
+const batchDialog=$('batchDialog');
+const batchState={jobs:[],ignored:0,running:false,collecting:false,stop:false,attempted:false,conflicts:[],rows:[]};
+const batchLabels={queued:'待检查',checking:'校验音频…',ready:'已就绪',uploading:'正在上传…',complete:'已完成',invalid:'音频无效',uncertain:'待核对',failed:'待重试'};
+const batchLocked=()=>batchState.jobs.some(j=>['complete','uncertain'].includes(j.status));
+const batchStart=()=>({bank:Number($('batchBank').value),pad:Number($('batchPad').value)});
+function batchMessage(text,error=false){$('batchMessage').textContent=text;$('batchMessage').classList.toggle('error',error)}
+function syncBatchControls(){
+  const busy=state.busy||batchState.running||batchState.collecting,locked=batchLocked(),jobs=batchState.jobs,done=jobs.filter(j=>j.status==='complete').length;
+  $('batchOpen').disabled=state.busy||batchState.collecting;
+  for(const id of ['batchFilesButton','batchFolderButton','batchFiles','batchFolder'])$(id).disabled=busy||locked;
+  $('batchBank').disabled=busy||locked;$('batchPad').disabled=busy||locked;
+  $('batchClear').disabled=busy||!jobs.length;$('batchClose').disabled=busy;
+  $('batchConnect').hidden=state.mode==='live';$('batchConnect').disabled=busy;
+  $('batchSubmit').disabled=busy||state.mode!=='live'||!jobs.length||done===jobs.length;
+  $('batchSubmit').textContent=done&&done<jobs.length?'重试剩余采样':batchState.attempted?'重试上传':'检查并上传';
+  $('batchStop').hidden=!batchState.running;$('batchStop').disabled=batchState.stop;
+  $('batchReceipt').disabled=!batchState.attempted||busy;
+  $('batchDrop').classList.toggle('disabled',busy||locked);
+  for(const row of batchState.rows)row.remove.disabled=busy||locked;
+  $('batchConnectionHint').hidden=state.mode==='live';
+}
+function renderBatch(){
+  const jobs=batchState.jobs,{bank,pad}=batchStart();let targets=[],rangeError='';
+  batchDialog.classList.toggle('has-files',jobs.length>0);
+  if(jobs.length)try{targets=SXCBatch.plan(jobs.length,bank,pad)}catch(e){rangeError=e.message}
+  const done=jobs.filter(j=>j.status==='complete').length;
+  $('batchCount').textContent=jobs.length?`${jobs.length} 个采样 · 已完成 ${done} 个`:'尚未选择音频';
+  $('batchRange').textContent=rangeError||(targets.length?`${SXCBatch.label(targets[0])} → ${SXCBatch.label(targets[targets.length-1])}`:'选择文件后显示填充范围');
+  $('batchRange').classList.toggle('error',!!rangeError);
+  $('batchIgnored').textContent=batchState.ignored?`已跳过 ${batchState.ignored} 个隐藏或非音频文件。`:'';
+  $('batchListEmpty').hidden=!!jobs.length;$('batchTable').hidden=!jobs.length;
+  batchState.rows=[];const fragment=document.createDocumentFragment();
+  jobs.forEach((job,i)=>{
+    const row=document.createElement('tr'),order=document.createElement('td'),fileCell=document.createElement('td'),target=document.createElement('td'),status=document.createElement('td'),action=document.createElement('td');
+    order.textContent=String(i+1);order.className='batch-order';
+    const name=document.createElement('strong'),detail=document.createElement('small');name.textContent=job.path;name.title=job.path;
+    detail.textContent=size(job.file.size)+(job.info?` · ${job.info.duration.toFixed(2)} 秒`:'');fileCell.className='batch-file';fileCell.append(name,detail);
+    target.textContent=targets[i]?`${pad2(targets[i].bank)} / ${pad2(targets[i].pad)}`:'超出范围';target.className='batch-target';
+    status.textContent=batchLabels[job.status];status.className='batch-status';status.dataset.state=job.status;if(job.error)status.title=job.error;
+    if(targets[i]&&batchState.conflicts.some(t=>t.bank===targets[i].bank&&t.pad===targets[i].pad)){status.textContent='位置已占用';status.dataset.state='invalid'}
+    const remove=document.createElement('button');remove.type='button';remove.textContent='×';remove.className='batch-remove';remove.setAttribute('aria-label','移除 '+job.path);
+    remove.onclick=()=>{if(state.busy||batchLocked())return;jobs.splice(i,1);batchState.conflicts=[];batchMessage('列表已更新，点击重试会重新检查全部目标位置。');renderBatch()};
+    action.append(remove);row.append(order,fileCell,target,status,action);fragment.append(row);batchState.rows.push({row,status,detail,remove});
+  });
+  $('batchRows').replaceChildren(fragment);syncBatchControls();
+}
+function updateBatchJob(job){
+  const row=batchState.rows[batchState.jobs.indexOf(job)];if(!row)return;
+  if(job.status==='uploading'&&!batchState.stop)batchMessage('空位与音频检查已通过，正在顺序上传。请保持连接；可点击“停止”在当前采样核对完成后暂停。');
+  row.status.textContent=batchLabels[job.status];row.status.dataset.state=job.status;row.status.title=job.error||'';
+  row.detail.textContent=size(job.file.size)+(job.info?` · ${job.info.duration.toFixed(2)} 秒`:'');
+  $('batchCount').textContent=`${batchState.jobs.length} 个采样 · 已完成 ${batchState.jobs.filter(j=>j.status==='complete').length} 个`;
+  syncBatchControls();
+}
+function openBatch(){
+  if(state.busy)return;stopAudio();
+  if(!batchState.jobs.length){$('batchBank').value=String(state.bank);$('batchPad').value='1'}
+  renderBatch();batchDialog.showModal();
+}
+function closeBatch(){if(state.busy||batchState.running||batchState.collecting)return;batchDialog.close()}
+$('batchOpen').onclick=openBatch;$('batchClose').onclick=closeBatch;
+batchDialog.addEventListener('cancel',event=>{event.preventDefault();closeBatch()});
+for(let n=1;n<=80;n++)$('batchBank').append(new Option('Bank '+pad2(n),String(n)));
+for(let n=1;n<=16;n++)$('batchPad').append(new Option('Pad '+pad2(n),String(n)));
+for(const id of ['batchBank','batchPad'])$(id).onchange=()=>{batchState.conflicts=[];renderBatch();batchMessage('点击上传后会重新检查整个填充范围。')};
+$('batchFilesButton').onclick=()=>$('batchFiles').click();$('batchFolderButton').onclick=()=>$('batchFolder').click();
+async function chooseBatch(getSelection){
+  if(state.busy||batchState.running||batchState.collecting||batchLocked())return;
+  batchState.collecting=true;syncBatchControls();batchMessage('正在读取文件列表…');
+  try{const selected=await getSelection();batchState.jobs=selected.jobs;batchState.ignored=selected.ignored;batchState.attempted=false;batchState.conflicts=[];batchMessage('文件已按路径和名称排序。设置起点后，点击“检查并上传”。')}
+  catch(e){batchMessage(e.message+' 原有列表未改变。',true)}
+  finally{batchState.collecting=false;renderBatch()}
+}
+for(const id of ['batchFiles','batchFolder'])$(id).onchange=()=>{const files=[...$(id).files];$(id).value='';if(files.length)chooseBatch(()=>SXCBatch.fromFiles(files))};
+$('batchClear').onclick=()=>{if(state.busy||batchState.collecting)return;batchState.jobs=[];batchState.ignored=0;batchState.attempted=false;batchState.conflicts=[];batchMessage('列表已清空。机器上已经上传的采样会保留。');renderBatch()};
+const batchDrop=$('batchDrop');
+batchDrop.addEventListener('dragover',event=>{
+  if(!dragHasFiles(event))return;event.preventDefault();event.stopPropagation();
+  const allowed=!state.busy&&!batchState.collecting&&!batchLocked();event.dataTransfer.dropEffect=allowed?'copy':'none';batchDrop.classList.toggle('drop-target',allowed);
+});
+batchDrop.addEventListener('dragleave',event=>{if(!batchDrop.contains(event.relatedTarget))batchDrop.classList.remove('drop-target')});
+batchDrop.addEventListener('drop',event=>{
+  event.preventDefault();event.stopPropagation();batchDrop.classList.remove('drop-target');
+  if(state.busy||batchState.collecting||batchLocked())return;
+  const captured=SXCBatch.captureDrop(event.dataTransfer);chooseBatch(()=>SXCBatch.fromDrop(captured));
+});
+$('batchConnect').onclick=async()=>{if(state.busy)return;await $('connect').onclick();batchMessage(state.mode==='live'?'已连接。文件列表保留，可以开始或重试上传。':'连接未完成。文件列表保留，请连接机器后重试。',state.mode!=='live');syncBatchControls()};
+$('batchStop').onclick=()=>{batchState.stop=true;batchMessage('正在停止：如已有采样在传送，将先完成当前 Pad 的加载与核对。');syncBatchControls()};
+$('batchReceipt').onclick=()=>{
+  const report={format:'sxc-batch-v1',created_at:new Date().toISOString(),...batchStart(),files:batchState.jobs.map(({path,status,target,info,error,report})=>({path,status,target,info,error,report}))};
+  saveBlob(new Blob([JSON.stringify(report,null,2)+'\n'],{type:'application/json'}),'SXC-1_批量上传记录_'+localDate()+'.json');
+};
+$('batchSubmit').onclick=async()=>{
+  if(state.busy||batchState.collecting||state.mode!=='live'||!batchState.jobs.length)return;
+  const midi=state.midi;batchState.running=true;batchState.stop=false;batchState.attempted=true;batchState.conflicts=[];state.uploading=true;stopAudio();renderBatch();
+  batchMessage('正在检查连续空位，检查完成前不会写入采样。');$('batchProgressPanel').hidden=false;let failure=null;
+  const batchProgress=(text,pct)=>{progress(text,pct);$('batchProgressText').textContent=text;if(pct==null)$('batchProgress').removeAttribute('value');else $('batchProgress').value=pct};
+  try{
+    await run('检查批量上传目标…',async()=>{
+      try{
+        await SXCBatch.execute(midi,batchState.jobs,{...batchStart(),
+          checkpoint:()=>{checkAbort();if(batchState.stop)throw new SXCBatch.BatchError('cancelled','已停止，文件列表和已完成进度均保留。点击重试可继续剩余采样。')},
+          progress:batchProgress,change:updateBatchJob,journal:uploadJournal,
+          completed:job=>{if(state.bank!==job.target.bank){state.cache.clear();state.padSettings.clear()}state.bank=job.target.bank;state.entries=job.report.after;state.padSettings.set(state.bank+':'+job.target.pad,SXCPad.parseDb(SXCUpload.defaults()))}
+        });
+        batchMessage(`批量上传完成：${batchState.jobs.length} 个采样均已读回核对。`);notice('批量上传完成，所有采样均已核对。');
+        await loadBank();
+      }catch(e){
+        failure=e;batchState.conflicts=e.conflicts||[];
+        if(e instanceof SXCBatch.BatchError){batchMessage(e.message,e.code!=='cancelled');notice(e.message,e.code!=='cancelled')}
+        else{batchMessage(`上传已停止：${e.message}。列表与已完成进度已保留，请重新连接后重试。`,true);throw e}
+      }
+    });
+  }finally{
+    batchState.running=false;state.uploading=false;state.uploadLock=false;$('batchProgressPanel').hidden=true;renderBatch();controls();
+    if(!failure&&batchState.jobs.every(j=>j.status==='complete'))$('batchSubmit').textContent='全部完成';
+  }
+};
+renderBatch();
 </script>
 </body></html>

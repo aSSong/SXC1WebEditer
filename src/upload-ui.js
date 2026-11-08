@@ -68,7 +68,7 @@ async function submitPreparedUpload(){
 }
 function dragHasFiles(event){return [...(event.dataTransfer?.types||[])].includes('Files')}
 function dragPad(event){const card=event.target.closest?.('#pads .pad');return card&&{card,pad:Number(card.dataset.pad)}}
-function canDrop(pad){return state.mode==='live'&&!state.busy&&!uploadDialog.open&&Number.isInteger(pad)&&pad>=1&&pad<=16&&!SXCUpload.occupied(state.entries,pad)}
+function canDrop(pad){return state.mode==='live'&&!state.busy&&!document.querySelector('dialog[open]')&&Number.isInteger(pad)&&pad>=1&&pad<=16&&!SXCUpload.occupied(state.entries,pad)}
 function clearDropMarks(){document.querySelectorAll('.pad.drop-target').forEach(c=>c.classList.remove('drop-target'));$('pads').classList.remove('dragging')}
 document.addEventListener('dragover',event=>{
   if(!dragHasFiles(event))return;event.preventDefault();const target=dragPad(event),allowed=target&&canDrop(target.pad);
