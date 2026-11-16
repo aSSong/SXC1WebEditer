@@ -73,3 +73,10 @@ dialog{width:min(570px,calc(100vw - 28px));max-height:90vh;overflow:auto;border:
 .refresh-label{display:none}
 @media(max-width:1200px){.heading{display:block}.library-tools{width:100%;margin-top:18px}.bank-actions{width:510px;max-width:100%}}
 @media(max-width:600px){.bank-actions{width:100%;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.refresh-label{display:inline;margin-left:6px}.action-menu>summary{font-size:12px}}
+
+/* Use the window height for banks; only scroll when the list cannot fit. */
+@media(min-width:761px){
+  aside{height:calc(100vh - 83px);height:calc(100dvh - 83px);min-height:0;align-self:start}
+  .sidebar-head,.source-tag,#saved{flex:none}
+  #banks{flex:1;min-height:0;max-height:none;overflow-x:hidden;overflow-y:auto}
+}

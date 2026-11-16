@@ -76,6 +76,13 @@ dialog{width:min(570px,calc(100vw - 28px));max-height:90vh;overflow:auto;border:
 .refresh-label{display:none}
 @media(max-width:1200px){.heading{display:block}.library-tools{width:100%;margin-top:18px}.bank-actions{width:510px;max-width:100%}}
 @media(max-width:600px){.bank-actions{width:100%;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.refresh-label{display:inline;margin-left:6px}.action-menu>summary{font-size:12px}}
+
+/* Use the window height for banks; only scroll when the list cannot fit. */
+@media(min-width:761px){
+  aside{height:calc(100vh - 83px);height:calc(100dvh - 83px);min-height:0;align-self:start}
+  .sidebar-head,.source-tag,#saved{flex:none}
+  #banks{flex:1;min-height:0;max-height:none;overflow-x:hidden;overflow-y:auto}
+}
 </style></head>
 <body>
 <header class="topbar"><div class="brand"><span class="logo" aria-hidden="true">▥</span><strong>SXC—1</strong><span class="brand-sub">SAMPLE LIBRARY</span></div><div class="top-actions"><label class="language-picker"><span class="sr-only" data-i18n="界面语言">界面语言</span><select id="language" data-language-select aria-label="界面语言" data-i18n-aria-label="界面语言"><option value="en" lang="en">English</option><option value="zh-CN" lang="zh-CN">简体中文</option></select></label><span id="connection" class="connection"><span data-i18n="● 未连接">● 未连接</span></span><button id="connect" class="primary"><span data-i18n="连接 SXC-1">连接 SXC-1</span></button><button id="disconnect" hidden><span data-i18n="断开">断开</span></button></div></header>
