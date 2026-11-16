@@ -24,6 +24,7 @@
 !/src/test-i18n.cjs
 !/src/backup.js
 !/src/backup-ui.js
+!/src/actions-ui.js
 !/src/test-backup.cjs
 !/src/locales/
 /src/locales/*

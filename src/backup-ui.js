@@ -2,6 +2,7 @@
 let backupPicking=false;
 function syncBackupControls(){
   $('backupAll').disabled=state.busy||backupPicking||state.mode!=='live';
+  if(typeof syncLibraryActions==='function')syncLibraryActions();
 }
 function backupProgress(event){
   const {phase,stage,bank,pad,name,loaded=0,total=0,scannedBanks=0}=event;

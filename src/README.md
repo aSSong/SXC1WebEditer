@@ -6,6 +6,7 @@
 - `upload.js`：WAV 转换、波形生成与写入后核对。
 - `pad.js`：Pad 设置、完整复制与保存。
 - `batch.js`、`batch-ui.js`：音频/文件夹列表、连续空位预检、批量队列和重试窗口。
+- `actions-ui.js`：音频导入、备份和本地浏览的操作分组，以及键盘/焦点行为。
 - `backup.js`、`backup-ui.js`：全部 Bank 的只读文件夹导出、空音频过滤、逐文件核对与完成清单。
 - `app.js`、`upload-ui.js`、`pad-ui.js`：浏览、下载、上传和编辑界面。
 - `page.html`、`style.css`：页面模板和样式。
@@ -26,3 +27,5 @@ Run `node src/test-i18n.cjs` for offline localization tests. The suite checks la
 ## 全 Bank 备份 / All-bank backup
 
 `node --test src/test-backup.cjs` uses in-memory MIDI and filesystem adapters. It checks sparse bank selection, literal audio/settings, exported manifest compatibility, output verification and failure/cancellation behavior. No physical device is accessed. The exporter calls directory/read only, bypasses the preview cache, and never invokes Bank selection or device-write methods. The browser saves to a fresh subfolder selected through its folder-access dialog.
+
+The action groups use native disclosure controls, with Enter/Space, normal Tab navigation, Escape focus return and outside-click closing. Design reference: [W3C Disclosure Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/). Audio import and backup browsing remain distinct operations; opening an archive does not restore it to the sampler.
