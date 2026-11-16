@@ -3,6 +3,7 @@
 !/.gitignore
 !/.nojekyll
 !/README.md
+!/README.en.md
 !/index.html
 !/src/
 /src/*
@@ -19,3 +20,8 @@
 !/src/batch.js
 !/src/batch-ui.js
 !/src/test-batch.cjs
+!/src/i18n.js
+!/src/test-i18n.cjs
+!/src/locales/
+/src/locales/*
+!/src/locales/en.json

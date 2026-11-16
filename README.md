@@ -1,5 +1,7 @@
 # SXC-1 Web Editor
 
+**简体中文 · [English](README.en.md)**
+
 CASIO SXC-1 非官方网页采样管理器。通过 USB 和 Web MIDI 直接与机器通信，无需修改固件或安装官方 App。
 
 **在线使用：[打开采样管理器](https://assong.github.io/SXC1WebEditer/)**
@@ -10,6 +12,8 @@ CASIO SXC-1 非官方网页采样管理器。通过 USB 和 Web MIDI 直接与�
 2. 正常开启 SXC-1，用支持数据传输的 USB 线连接机器的 **DATA** 接口。
 3. 退出官方 App 和其他正在连接机器的编辑器。
 4. 点击「连接 SXC-1」，允许浏览器访问 MIDI / SysEx。
+
+页眉和弹窗中的语言选择器可在 English / 简体中文之间即时切换并记住选择，无需刷新页面或重新连接设备；文件名、路径和设备数据保持原样。未保存选择时，中文浏览器默认使用简体中文，其他语言默认使用 English。
 
 已在 macOS + Chrome + SXC-1 固件 **1.4.1** 上完成实机验证。其他系统、浏览器与固件尚未完成实机验证；设备连接需要浏览器支持 Web MIDI / SysEx。
 

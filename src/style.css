@@ -36,3 +36,8 @@ dialog{width:min(570px,calc(100vw - 28px));max-height:90vh;overflow:auto;border:
 .batch-feedback{display:grid;grid-template-areas:"batch-status";height:78px;flex:none;margin-top:12px}.batch-feedback>*{grid-area:batch-status;min-height:0!important;overflow:auto;margin:0!important}.batch-feedback:has(.batch-progress:not([hidden])) #batchMessage{visibility:hidden}.batch-feedback .batch-progress{display:flex;flex-direction:column;justify-content:center}#batchDialog>.batch-connection{flex:none}
 
 #batchDialog.has-files .dialog-intro{display:none}#batchDialog.has-files .batch-drop{padding:12px;display:flex;align-items:center;justify-content:space-between;gap:12px}#batchDialog.has-files .batch-drop>strong{font-size:12px}#batchDialog.has-files .batch-drop>span{display:none}#batchDialog.has-files .batch-start{margin:16px 0}@media(max-width:600px){#batchDialog.has-files .batch-drop{align-items:flex-start;flex-direction:column;gap:10px}}
+
+/* Language selection changes presentation only and stays available during transfers. */
+.language-picker{display:flex;align-items:center}.language-picker select{width:auto;min-width:96px;padding:7px 10px;font:12px var(--mono)}
+.top-actions{flex-wrap:wrap}.top-actions .connection{white-space:nowrap}
+@media(max-width:600px){.topbar{gap:12px;flex-wrap:wrap}.top-actions{gap:8px}.language-picker select{min-width:90px}}
