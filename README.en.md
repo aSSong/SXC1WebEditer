@@ -23,6 +23,7 @@ The upstream author reports physical testing with **macOS + Chrome + SXC-1 firmw
 - Pad 1 is at the bottom left. From top to bottom, the rows are **13–16 / 9–12 / 5–8 / 1–4**.
 - The Loop switch at the top right of a pad controls looping in browser preview, including during playback. It does not change the sampler's Loop setting.
 - Preview samples, download an individual original WAV, or download the current bank as a ZIP containing audio, pad settings, and a verification manifest. Patterns are not included.
+- Back up all 80 banks to a folder on your computer, omitting empty banks and pads without audio.
 - Select a WAV or drop it onto an empty pad. The editor converts the audio and generates the waveform needed by the sampler's display.
 - Select multiple audio files or drop a folder for sequential uploads from a chosen bank/pad. Files are sorted by path and filename. If there is insufficient empty space, the list remains available for retry after resolving the conflict.
 - Copy a pad to an empty pad in the same or another bank, retaining the original audio, waveform, start/end points, settings, and associated files.
@@ -42,6 +43,18 @@ Choose a starting bank (1–80) and pad (1–16). Pad 16 is followed by pad 1 in
 Each file is limited to 60 seconds and 64 MB, mono or stereo. WAV uses the existing conversion path. MP3, FLAC, M4A, and other formats depend on browser decoding support; unsupported files produce an error. All audio is converted to 48 kHz / 16-bit stereo with the sampler's waveform data and default pad settings. Batch audio import does not restore `.wav.db` settings from a backup.
 
 Uploads run one at a time with read-back verification. **Stop** waits for the current pad's verification to finish. Retry skips completed items and first checks any pad whose result was uncertain when the previous attempt was interrupted. Completed writes are not rolled back. Closing the dialog preserves its list and progress; refreshing or leaving the page clears them. You can download the batch record. **Batch upload has passed simulated-device and browser tests; physical batch-write testing remains pending.**
+
+## Back up all banks
+
+Connect the sampler, then click **Back up all banks** in the sidebar and choose a destination folder. The editor scans all 80 banks and creates a new `SXC-1_AllBanks_…` subfolder only if it finds audio to save. The destination must support folder access in Chrome or Edge.
+
+A pad is included when it has an exact `01.wav`–`16.wav` filename with non-empty WAV audio data. Its associated files, including `.wav.db` settings, are kept with the original audio bytes and filenames. A silent recording still contains audio and is preserved. Missing samples, zero-length files, valid WAVs with no audio data, settings-only pads and their unused sidecars are omitted. Banks with no retained audio get no output folder. Bank numbers and pad numbers are preserved rather than compacted.
+
+Files are saved and checked individually, so the whole device is not collected in memory or constrained by the single-bank ZIP size limit. The existing USB reader still limits each file to 256 MB. The export reads bank directories and files without switching banks or writing to the sampler. It compares directory names and sizes to detect changes; avoid editing or recording on the sampler during the export, since this cannot guarantee an atomic snapshot of changing content.
+
+Each completed backup contains `manifest.json` and `SHA256SUMS.txt`, with only non-empty banks listed. Choose the generated subfolder with **Open backup folder** to browse it offline. Patterns and global settings are outside this sample-bank backup's scope. Restore to the device is not implemented by this export feature.
+
+**Cancel** stops the export. Previously saved files remain in the new subfolder with an incomplete manifest where possible; an incomplete backup must not be treated as a finished archive. Retrying creates another new subfolder. An all-empty scan creates no backup. The new all-bank export has simulated-device/filesystem and browser coverage; physical export testing remains pending.
 
 ## Files and privacy
 
@@ -70,6 +83,7 @@ Offline tests:
 ```sh
 node src/test-batch.cjs
 node src/test-i18n.cjs
+node --test src/test-backup.cjs
 ```
 
 The localization tests use a minimal fake document and blocked device/network APIs. They do not connect to a sampler. See [source documentation](src/README.md) for localization details.

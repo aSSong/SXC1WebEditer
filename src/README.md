@@ -6,6 +6,7 @@
 - `upload.js`：WAV 转换、波形生成与写入后核对。
 - `pad.js`：Pad 设置、完整复制与保存。
 - `batch.js`、`batch-ui.js`：音频/文件夹列表、连续空位预检、批量队列和重试窗口。
+- `backup.js`、`backup-ui.js`：全部 Bank 的只读文件夹导出、空音频过滤、逐文件核对与完成清单。
 - `app.js`、`upload-ui.js`、`pad-ui.js`：浏览、下载、上传和编辑界面。
 - `page.html`、`style.css`：页面模板和样式。
 - `build.py`：将以上文件合并到 `index.html`。
@@ -21,3 +22,7 @@
 `setLanguage('en' | 'zh-CN')` 只更新界面绑定、页面语言及标题等文案，不重载页面，不改变 MIDI、网络或连接状态。选择保存在 localStorage 的 `sxc-language`；存储不可用时仍可切换。未保存选择时，以浏览器的首选语言判断：`zh*` 使用简体中文，其他或空值使用 English。
 
 Run `node src/test-i18n.cjs` for offline localization tests. The suite checks language/preference fallback, placeholder parity and literal user data, template recovery, live text/ARIA updates, and deterministic builds. It uses a fake document with device/network access blocked; it does not validate behavior on a physical SXC-1. English user documentation: [README.en.md](../README.en.md).
+
+## 全 Bank 备份 / All-bank backup
+
+`node --test src/test-backup.cjs` uses in-memory MIDI and filesystem adapters. It checks sparse bank selection, literal audio/settings, exported manifest compatibility, output verification and failure/cancellation behavior. No physical device is accessed. The exporter calls directory/read only, bypasses the preview cache, and never invokes Bank selection or device-write methods. The browser saves to a fresh subfolder selected through its folder-access dialog.
