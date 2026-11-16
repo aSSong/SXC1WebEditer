@@ -41,9 +41,15 @@ dialog{width:min(570px,calc(100vw - 28px));max-height:90vh;overflow:auto;border:
 #batchDialog.has-files .dialog-intro{display:none}#batchDialog.has-files .batch-drop{padding:12px;display:flex;align-items:center;justify-content:space-between;gap:12px}#batchDialog.has-files .batch-drop>strong{font-size:12px}#batchDialog.has-files .batch-drop>span{display:none}#batchDialog.has-files .batch-start{margin:16px 0}@media(max-width:600px){#batchDialog.has-files .batch-drop{align-items:flex-start;flex-direction:column;gap:10px}}
 
 /* Language selection changes presentation only and stays available during transfers. */
-.language-picker{display:flex;align-items:center}.language-picker select{width:auto;min-width:96px;padding:7px 10px;font:12px var(--mono)}
-.top-actions{flex-wrap:wrap}.top-actions .connection{white-space:nowrap}
-@media(max-width:600px){.topbar{gap:12px;flex-wrap:wrap}.top-actions{gap:8px}.language-picker select{min-width:90px}}
+.language-picker{display:flex;align-items:center}.language-picker select{width:96px;min-width:96px;padding:7px 10px;font:12px var(--mono)}
+/* Reserve each control's space so translated labels cannot move the selector. */
+.topbar{gap:16px}
+.top-actions{display:grid;grid-template-columns:96px minmax(0,128px) 144px;grid-template-areas:"language connection action";width:392px;flex:none;gap:12px}
+.top-actions .language-picker{grid-area:language}
+.top-actions .connection{grid-area:connection;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top-actions #connect,.top-actions #disconnect{grid-area:action;width:100%}
+@media(max-width:760px){.top-actions{width:320px;grid-template-columns:96px minmax(0,1fr) 112px;gap:8px}}
+@media(max-width:480px){.topbar{height:auto;min-height:70px;display:grid;grid-template-columns:minmax(0,1fr);gap:12px;padding:14px 18px}.top-actions{width:100%}}
 </style></head>
 <body>
 <header class="topbar"><div class="brand"><span class="logo" aria-hidden="true">▥</span><strong>SXC—1</strong><span class="brand-sub">SAMPLE LIBRARY</span></div><div class="top-actions"><label class="language-picker"><span class="sr-only" data-i18n="界面语言">界面语言</span><select id="language" data-language-select aria-label="界面语言" data-i18n-aria-label="界面语言"><option value="en" lang="en">English</option><option value="zh-CN" lang="zh-CN">简体中文</option></select></label><span id="connection" class="connection"><span data-i18n="● 未连接">● 未连接</span></span><button id="connect" class="primary"><span data-i18n="连接 SXC-1">连接 SXC-1</span></button><button id="disconnect" hidden><span data-i18n="断开">断开</span></button></div></header>
